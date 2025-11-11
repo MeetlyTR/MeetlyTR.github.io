@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <title>Hakkımda – Muzaffer Karafil</title>
+  <meta name="description" content="Muzaffer Karafil — Hakkımda, Projelerim, Yetkinliklerim ve Deneyimlerim. Unreal Engine & Unity Plugin Developer, Togg Paint Maintenance, Meetly Geliştiricisi.">
+  <link rel="canonical" href="https://meetlytr.github.io/about.html"/>
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Hakkımda – Muzaffer Karafil">
+  <meta property="og:description" content="Muzaffer Karafil — Unreal Engine & Unity Plugin Developer · Togg Paint Maintenance · Meetly Geliştiricisi">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://meetlytr.github.io/about.html">
+  <meta property="og:image" content="https://meetlytr.github.io/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #818cf8;
+      --secondary: #8b5cf6;
+      --accent: #ec4899;
+      --fg: #1f2937;
+      --fg-light: #6b7280;
+      --bg: #ffffff;
+      --bg-light: #f9fafb;
+      --bg-dark: #f3f4f6;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--fg);
+      background: var(--bg);
+      font-size: 16px;
+    }
+    
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: var(--shadow);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-menu a {
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-menu a:hover {
+      color: var(--primary);
+    }
+    
+    /* Language Selector */
+    .language-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: 1rem;
+    }
+    
+    .language-selector select {
+      padding: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    
+    /* Section */
+    .section {
+      padding: 5rem 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--fg-light);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    /* About Section */
+    .about {
+      background: var(--bg-light);
+      margin-top: 80px;
+    }
+    
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .about-image {
+      text-align: center;
+    }
+    
+    .about-image img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--fg-light);
+    }
+    
+    .about-text strong {
+      color: var(--fg);
+    }
+    
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .project-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    
+    .project-image {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .project-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+    
+    .project-content p {
+      color: var(--fg-light);
+      line-height: 1.6;
+    }
+    
+    /* Skills Section */
+    .skills {
+      background: var(--bg-light);
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .skill-category {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .skill-category h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+    
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .skill-tag {
+      background: var(--bg-light);
+      color: var(--fg);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+    }
+    
+    /* Experience Section */
+    .timeline {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 2rem;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--primary);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.5rem;
+      top: 0.5rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid white;
+    }
+    
+    .timeline-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--fg);
+    }
+    
+    .timeline-item .date {
+      color: var(--fg-light);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .timeline-item ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .timeline-item li {
+      padding: 0.3rem 0;
+      color: var(--fg-light);
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .timeline-item li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+    
+    /* Contact Section */
+    .contact {
+      background: var(--bg-light);
+    }
+    
+    .contact-content {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .contact-content p {
+      font-size: 1.1rem;
+      color: var(--fg-light);
+      margin-bottom: 2rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--fg);
+      font-weight: 500;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+    }
+    
+    .social-link:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--fg);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
+    
+    .footer p {
+      opacity: 0.8;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .projects-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .section {
+        padding: 3rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo">Muzaffer Karafil</a>
+      <ul class="nav-menu">
+        <li><a href="/" data-i18n="nav.home">Ana Sayfa</a></li>
+        <li><a href="/#services" data-i18n="nav.services">Hizmetler</a></li>
+        <li><a href="about.html" data-i18n="nav.about">Hakkımda</a></li>
+      </ul>
+      <div class="language-selector">
+        <select id="language-selector">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="ru">Русский</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+          <option value="ko">한국어</option>
+          <option value="ar">العربية</option>
+          <option value="nl">Nederlands</option>
+          <option value="sv">Svenska</option>
+          <option value="no">Norsk</option>
+          <option value="da">Dansk</option>
+          <option value="fi">Suomi</option>
+          <option value="pl">Polski</option>
+          <option value="cs">Čeština</option>
+          <option value="hu">Magyar</option>
+          <option value="ro">Română</option>
+          <option value="bg">Български</option>
+          <option value="el">Ελληνικά</option>
+          <option value="hr">Hrvatski</option>
+          <option value="sr">Српски</option>
+          <option value="sk">Slovenčina</option>
+          <option value="sl">Slovenščina</option>
+          <option value="uk">Українська</option>
+          <option value="et">Eesti</option>
+          <option value="lv">Latviešu</option>
+          <option value="lt">Lietuvių</option>
+          <option value="he">עברית</option>
+          <option value="th">ไทย</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="hi">हिन्दी</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="tl">Filipino</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <section id="about" class="section about">
+    <div class="container">
+      <h2 class="section-title" data-i18n="about.title">Hakkımda</h2>
+      <div class="about-content">
+        <div class="about-image">
+          <img src="profile.jpg" alt="Muzaffer Karafil">
+        </div>
+        <div class="about-text">
+        <p data-i18n="about.p1" data-i18n-html="true">
+          Merhaba! Ben **Muzaffer Karafil**. Üretimden gelen disiplin ve hassasiyeti teknoloji tutkusu ile birleştiriyorum.
+          </p>
+          <p data-i18n="about.p2" data-i18n-html="true">
+            Togg'da **Paint Maintenance** ekibinde çalışıyorum ve aynı zamanda **Meetly** projesini mobil ve AI odaklı bir ürün geliştiricisi olarak geliştiriyorum.
+        </p>
+          <p data-i18n="about.p3" data-i18n-html="true">
+            **Unreal Engine** ve **Unity** için profesyonel plugin geliştirme konusunda uzmanım. Oyun motorları için özel çözümler oluşturmak, geliştiricilerin iş akışlarını optimize etmek ve performanslı araçlar geliştirmek tutkum.
+          </p>
+          <p data-i18n="about.p4" data-i18n-html="true">
+            Her plugin, modüler mimari, performans odaklı tasarım ve geliştirici dostu dokümantasyonla gelir. Çapraz platform desteği ve sürüm kontrolü dostu yapı, projelerinizin başarısını garanti eder.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title" data-i18n="projects.title">Projelerim</h2>
+      <p class="section-subtitle" data-i18n="projects.subtitle">
+        Unreal Engine, Unity ve mobil geliştirme projeleri
+      </p>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">🎮</div>
+          <div class="project-content">
+            <h3 data-i18n="projects.meetly.title">Meetly</h3>
+            <p data-i18n="projects.meetly.description">
+              Merkezi randevu ve hizmet yönetim platformu. SwiftUI ile geliştirilmiş modern mobil uygulama, AI destekli özellikler içeriyor. Çok dilli arayüz, işletme–şube–çalışan hiyerarşisi ve ölçeklenebilir mimari.
+            </p>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="window.location.href='blueprint-outline.html'" style="cursor: pointer;">
+          <div class="project-image">⚙️</div>
+          <div class="project-content">
+            <h3 data-i18n="projects.blueprintOutline.title">BlueprintOutline - Unreal Engine Plugin</h3>
+            <p data-i18n="projects.blueprintOutline.description">
+              Unreal Engine için C++ ve Blueprint tabanlı Blueprint outline görselleştirme plugin'i. 
+              Editor araçları, runtime sistemleri ve performans optimizasyon çözümleri. 
+              Modüler mimari ve kapsamlı dokümantasyon.
+            </p>
+            <div style="margin-top: 1rem;">
+              <a href="blueprint-outline.html" style="color: var(--primary); font-weight: 600;" data-i18n="projects.blueprintOutline.viewDetails">Detayları Gör →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="window.location.href='unity-plugin.html'" style="cursor: pointer;">
+          <div class="project-image">🔧</div>
+          <div class="project-content">
+            <h3 data-i18n="projects.unityTools.title">Unity Editor Tools</h3>
+            <p data-i18n="projects.unityTools.description">
+              Unity için C# tabanlı Editor eklentileri ve iş akışı iyileştirme araçları. 
+              Custom Inspector'lar, Editor Window'lar, asset pipeline entegrasyonu ve 
+              build otomasyon sistemleri.
+            </p>
+            <div style="margin-top: 1rem;">
+              <a href="unity-plugin.html" style="color: var(--primary); font-weight: 600;" data-i18n="projects.unityTools.viewDetails">Detayları Gör →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section skills">
+    <div class="container">
+      <h2 class="section-title" data-i18n="skills.title">Yetkinliklerim</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4 data-i18n="skills.gameEngines">Oyun Motorları</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Unreal Engine</span>
+            <span class="skill-tag">Unity</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">C#</span>
+            <span class="skill-tag">Blueprint</span>
+            <span class="skill-tag">Editor Tools</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4 data-i18n="skills.mobile">Mobil Geliştirme</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">SwiftUI</span>
+            <span class="skill-tag">React Native</span>
+            <span class="skill-tag">iOS</span>
+            <span class="skill-tag">Cross-platform</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4 data-i18n="skills.industrial">Endüstriyel</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">DXQ3DOnside</span>
+            <span class="skill-tag">Power Automate</span>
+            <span class="skill-tag">Automation</span>
+            <span class="skill-tag">Quality Control</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4 data-i18n="skills.general">Genel</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">AI & ML</span>
+            <span class="skill-tag">Design Systems</span>
+            <span class="skill-tag">Architecture</span>
+            <span class="skill-tag">Optimization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title" data-i18n="experience.title">Deneyim</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4 data-i18n="experience.togg.title">🚘 Togg — Paint Maintenance</h4>
+          <div class="date" data-i18n="experience.togg.period">Nisan 2022 – Şimdi</div>
+          <ul>
+            <li data-i18n="experience.togg.items.0">Boya atölyesi bakım ve kalite süreçlerinde süreklilik ve verimlilik</li>
+            <li data-i18n="experience.togg.items.1">DXQ3DOnside, Power Automate ve ilgili otomasyon yeterlilikleri</li>
+            <li data-i18n="experience.togg.items.2">Endüstriyel süreçlerde optimizasyon ve problem çözme</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h4 data-i18n="experience.honda1.title">🏍 Honda Turkey Inc. — Tesis Bakım Operatörü</h4>
+          <div class="date" data-i18n="experience.honda1.period">Mayıs 2020 – Ekim 2021</div>
+          <ul>
+            <li data-i18n="experience.honda1.items.0">Ec-Pt Oven, Top Coat Oven, Wax Oven, Sealer Oven, Minimax System süreçlerinin bakımı ve işletilmesi</li>
+            <li data-i18n="experience.honda1.items.1">Sistem optimizasyonu ve süreklilik yönetimi</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h4 data-i18n="experience.honda2.title">🏍 Honda Turkey Inc. — Üretim Operatörü</h4>
+          <div class="date" data-i18n="experience.honda2.period">Eylül 2017 – Mayıs 2020</div>
+          <ul>
+            <li data-i18n="experience.honda2.items.0">Üretim hattı operasyonları, kalite kontrolü ve süreklilik</li>
+            <li data-i18n="experience.honda2.items.1">Süreç iyileştirme ve verimlilik artırma projeleri</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h4 data-i18n="experience.trio1.title">📡 Trio Mobile — Teknik Destek Müdürü</h4>
+          <div class="date" data-i18n="experience.trio1.period">Ağustos 2016 – Mayıs 2018</div>
+          <ul>
+            <li data-i18n="experience.trio1.items.0">Teknik destek ekip yönetimi, müşteri ilişkileri ve saha çözümleri</li>
+            <li data-i18n="experience.trio1.items.1">Ekip koordinasyonu ve teknik problem çözme</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h4 data-i18n="experience.meetly.title">📱 Meetly — Geliştirici & Ürün Sahibi</h4>
+          <div class="date" data-i18n="experience.meetly.period">Devam Ediyor</div>
+          <ul>
+            <li data-i18n="experience.meetly.items.0">Merkezi randevu ve hizmet yönetim platformu geliştirme</li>
+            <li data-i18n="experience.meetly.items.1">Çok dilli arayüz, işletme–şube–çalışan hiyerarşisi</li>
+            <li data-i18n="experience.meetly.items.2">Modern SwiftUI bileşenleri ve AI destekli özellikler</li>
+            <li data-i18n="experience.meetly.items.3">Basit, anlaşılır ve ölçeklenebilir ürün vizyonu</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <h2 class="section-title" data-i18n="contact.title">İletişim</h2>
+      <div class="contact-content">
+        <p data-i18n="contact.description">
+          Plugin geliştirme, işbirliği veya sorularınız için benimle iletişime geçmekten çekinmeyin. Projeleriniz için özel çözümler oluşturmaktan memnuniyet duyarım.
+        </p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/mucahitmuzaffer" target="_blank" rel="noopener" class="social-link">
+            <span>💼</span> <span data-i18n="contact.linkedin">LinkedIn</span>
+          </a>
+          <a href="https://github.com/MeetlyTR" target="_blank" rel="noopener" class="social-link">
+            <span>🔗</span> <span data-i18n="contact.github">GitHub</span>
+          </a>
+          <a href="mailto:mucahit.muzaffer@gmail.com" class="social-link">
+            <span>✉️</span> <span data-i18n="contact.email">Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p data-i18n="footer.text" data-i18n-html="true">© <span id="year"></span> Muzaffer Karafil · Unreal Engine & Unity Plugin Developer</p>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Language selector
+    const languageSelector = document.getElementById('language-selector');
+    if (languageSelector) {
+      languageSelector.addEventListener('change', function() {
+        if (window.i18n) {
+          window.i18n.setLanguage(this.value);
+        }
+      });
+      
+      // Set current language
+      if (window.i18n) {
+        languageSelector.value = window.i18n.currentLang;
+      }
+    }
+    
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

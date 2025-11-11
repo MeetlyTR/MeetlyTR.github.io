@@ -972,11 +972,8 @@
       <a href="/" class="logo">Muzaffer Karafil</a>
       <ul class="nav-menu">
         <li><a href="#home" data-i18n="nav.home">Ana Sayfa</a></li>
-        <li><a href="#services" data-i18n="nav.services">Servisler</a></li>
-        <li><a href="#projects" data-i18n="nav.projects">Projeler</a></li>
-        <li><a href="#about" data-i18n="nav.about">Hakkımda</a></li>
-        <li><a href="#experience" data-i18n="nav.experience">Deneyim</a></li>
-        <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
+        <li><a href="#services" data-i18n="nav.services">Hizmetler</a></li>
+        <li><a href="about.html" data-i18n="nav.about">Hakkımda</a></li>
       </ul>
       <div class="language-selector">
         <select id="language-selector">
@@ -1034,8 +1031,8 @@
         and developer tools. I create solutions that optimize game developers' workflows.
       </p>
       <div class="cta-buttons">
-        <a href="#services" class="btn btn-primary" data-i18n="hero.ctaServices">My Services</a>
-        <a href="#contact" class="btn btn-secondary" data-i18n="hero.ctaContact">Get In Touch</a>
+        <a href="#services" class="btn btn-primary" data-i18n="hero.ctaServices">Hizmetler</a>
+        <a href="about.html" class="btn btn-secondary" data-i18n="hero.ctaContact">Hakkımda</a>
       </div>
     </div>
   </section>
@@ -1043,18 +1040,18 @@
   <!-- Services Section -->
   <section id="services" class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n="services.title">My Services</h2>
+      <h2 class="section-title" data-i18n="services.title">Hizmetler</h2>
       <p class="section-subtitle" data-i18n="services.subtitle">
-        Professional plugin development services for Unreal Engine and Unity
+        Unreal Engine ve Unity için profesyonel plugin geliştirme hizmetleri
       </p>
       
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card" onclick="window.location.href='blueprint-outline.html'" style="cursor: pointer;">
           <div class="service-icon">🎯</div>
           <h3 data-i18n="services.unreal.title">Unreal Engine Plugin</h3>
           <p data-i18n="services.unreal.description">
-            C++ and Blueprint-based plugin development for Unreal Engine. 
-            Editor tools, runtime systems, and performance optimizations.
+            C++ ve Blueprint tabanlı Unreal Engine plugin geliştirme. 
+            Editor araçları, runtime sistemleri ve performans optimizasyonları.
           </p>
           <ul class="service-features">
             <li>C++ Module Development</li>
@@ -1064,14 +1061,17 @@
             <li>Performance Optimization</li>
             <li>Multi-threading Support</li>
           </ul>
+          <div style="margin-top: 1.5rem;">
+            <a href="blueprint-outline.html" style="color: var(--primary); font-weight: 600; text-decoration: none;" data-i18n="services.unreal.viewDetails">Detayları Gör →</a>
+          </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card" onclick="window.location.href='unity-plugin.html'" style="cursor: pointer;">
           <div class="service-icon">⚡</div>
           <h3 data-i18n="services.unity.title">Unity Plugin</h3>
           <p data-i18n="services.unity.description">
-            C#-based Editor extensions and runtime plugins for Unity. 
-            Custom Inspectors, Editor Windows, and workflow improvements.
+            C# tabanlı Editor eklentileri ve Unity için runtime plugin'ler. 
+            Custom Inspector'lar, Editor Window'lar ve workflow iyileştirmeleri.
           </p>
           <ul class="service-features">
             <li>C# Editor Extensions</li>
@@ -1081,234 +1081,14 @@
             <li>ScriptableObject Systems</li>
             <li>Build Pipeline Automation</li>
           </ul>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🚀</div>
-          <h3 data-i18n="services.mobile.title">Mobile Development</h3>
-          <p data-i18n="services.mobile.description">
-            Cross-platform mobile app development with SwiftUI and React Native. 
-            AI-powered features and modern user experience.
-          </p>
-          <ul class="service-features">
-            <li>SwiftUI Development</li>
-            <li>React Native Apps</li>
-            <li>iOS Native Development</li>
-            <li>AI Integration</li>
-            <li>Design Systems</li>
-            <li>Performance Optimization</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="section about">
-    <div class="container">
-      <h2 class="section-title" data-i18n="about.title">About Me</h2>
-      <div class="about-content">
-        <div class="about-image">
-          <img src="profile.jpg" alt="Muzaffer Karafil">
-        </div>
-        <div class="about-text">
-        <p data-i18n="about.p1" data-i18n-html="true">
-          Hello! I'm **Muzaffer Karafil**. I combine the discipline and precision from manufacturing with a passion for technology.
-          </p>
-          <p data-i18n="about.p2" data-i18n-html="true">
-            I work in the **Paint Maintenance** team at Togg, and at the same time, I develop the **Meetly** project as a mobile and AI-focused product developer.
-        </p>
-          <p data-i18n="about.p3" data-i18n-html="true">
-            I specialize in professional plugin development for **Unreal Engine** and **Unity**. Creating custom solutions for game engines, optimizing developers' workflows, and developing performant tools is my passion.
-          </p>
-          <p data-i18n="about.p4" data-i18n-html="true">
-            Every plugin comes with modular architecture, performance-oriented design, and developer-friendly documentation. Cross-platform support and version control-friendly structure guarantee the success of your projects.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="section">
-    <div class="container">
-      <h2 class="section-title" data-i18n="projects.title">My Projects</h2>
-      <p class="section-subtitle" data-i18n="projects.subtitle">
-        Unreal Engine, Unity, and mobile development projects
-      </p>
-      
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-image">🎮</div>
-          <div class="project-content">
-            <h3 data-i18n="projects.meetly.title">Meetly</h3>
-            <p data-i18n="projects.meetly.description">
-              Centralized appointment and service management platform. Modern mobile app developed with SwiftUI, featuring AI-powered capabilities. Multilingual interface, business–branch–employee hierarchy, and scalable architecture.
-            </p>
-          </div>
-        </div>
-
-        <div class="project-card" onclick="window.location.href='blueprint-outline.html'" style="cursor: pointer;">
-          <div class="project-image">⚙️</div>
-          <div class="project-content">
-            <h3 data-i18n="projects.blueprintOutline.title">BlueprintOutline - Unreal Engine Plugin</h3>
-            <p data-i18n="projects.blueprintOutline.description">
-              C++ and Blueprint-based Blueprint outline visualization plugin for Unreal Engine. 
-              Editor tools, runtime systems, and performance optimization solutions. 
-              Modular architecture and comprehensive documentation.
-            </p>
-            <div style="margin-top: 1rem;">
-              <a href="blueprint-outline.html" style="color: var(--primary); font-weight: 600;" data-i18n="projects.blueprintOutline.viewDetails">View Details →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" onclick="window.location.href='unity-plugin.html'" style="cursor: pointer;">
-          <div class="project-image">🔧</div>
-          <div class="project-content">
-            <h3 data-i18n="projects.unityTools.title">Unity Editor Tools</h3>
-            <p data-i18n="projects.unityTools.description">
-              C#-based Editor extensions and workflow improvement tools for Unity. 
-              Custom Inspectors, Editor Windows, asset pipeline integration, and 
-              build automation systems.
-            </p>
-            <div style="margin-top: 1rem;">
-              <a href="unity-plugin.html" style="color: var(--primary); font-weight: 600;" data-i18n="projects.unityTools.viewDetails">View Details →</a>
-            </div>
+          <div style="margin-top: 1.5rem;">
+            <a href="unity-plugin.html" style="color: var(--primary); font-weight: 600; text-decoration: none;" data-i18n="services.unity.viewDetails">Detayları Gör →</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="section skills">
-    <div class="container">
-      <h2 class="section-title" data-i18n="skills.title">My Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h4 data-i18n="skills.gameEngines">Game Engines</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Unreal Engine</span>
-            <span class="skill-tag">Unity</span>
-            <span class="skill-tag">C++</span>
-            <span class="skill-tag">C#</span>
-            <span class="skill-tag">Blueprint</span>
-            <span class="skill-tag">Editor Tools</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h4 data-i18n="skills.mobile">Mobile Development</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">SwiftUI</span>
-            <span class="skill-tag">React Native</span>
-            <span class="skill-tag">iOS</span>
-            <span class="skill-tag">Cross-platform</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h4 data-i18n="skills.industrial">Industrial</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">DXQ3DOnside</span>
-            <span class="skill-tag">Power Automate</span>
-            <span class="skill-tag">Automation</span>
-            <span class="skill-tag">Quality Control</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h4 data-i18n="skills.general">General</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">AI & ML</span>
-            <span class="skill-tag">Design Systems</span>
-            <span class="skill-tag">Architecture</span>
-            <span class="skill-tag">Optimization</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="section">
-    <div class="container">
-      <h2 class="section-title" data-i18n="experience.title">Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h4 data-i18n="experience.togg.title">🚘 Togg — Paint Maintenance</h4>
-          <div class="date" data-i18n="experience.togg.period">April 2022 – Present</div>
-          <ul>
-            <li data-i18n="experience.togg.items.0">Continuity and efficiency in paint shop maintenance & quality processes</li>
-            <li data-i18n="experience.togg.items.1">DXQ3DOnside, Power Automate, and related automation competencies</li>
-            <li data-i18n="experience.togg.items.2">Optimization and problem-solving in industrial processes</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <h4 data-i18n="experience.honda1.title">🏍 Honda Turkey Inc. — Facility Maintenance Operator</h4>
-          <div class="date" data-i18n="experience.honda1.period">May 2020 – October 2021</div>
-          <ul>
-            <li data-i18n="experience.honda1.items.0">Maintenance & operation of Ec-Pt Oven, Top Coat Oven, Wax Oven, Sealer Oven, Minimax System processes</li>
-            <li data-i18n="experience.honda1.items.1">System optimization and continuity management</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <h4 data-i18n="experience.honda2.title">🏍 Honda Turkey Inc. — Production Operator</h4>
-          <div class="date" data-i18n="experience.honda2.period">September 2017 – May 2020</div>
-          <ul>
-            <li data-i18n="experience.honda2.items.0">Production line operations, quality control, and continuity</li>
-            <li data-i18n="experience.honda2.items.1">Process improvement and efficiency enhancement projects</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <h4 data-i18n="experience.trio1.title">📡 Trio Mobile — Technical Support Manager</h4>
-          <div class="date" data-i18n="experience.trio1.period">August 2016 – May 2018</div>
-          <ul>
-            <li data-i18n="experience.trio1.items.0">Technical support team management, customer relations, and field solutions</li>
-            <li data-i18n="experience.trio1.items.1">Team coordination and technical problem solving</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <h4 data-i18n="experience.meetly.title">📱 Meetly — Developer & Product Owner</h4>
-          <div class="date" data-i18n="experience.meetly.period">Ongoing</div>
-          <ul>
-            <li data-i18n="experience.meetly.items.0">Centralized appointment & service management platform development</li>
-            <li data-i18n="experience.meetly.items.1">Multilingual interface, business–branch–employee hierarchy</li>
-            <li data-i18n="experience.meetly.items.2">Modern SwiftUI components and AI-powered features</li>
-            <li data-i18n="experience.meetly.items.3">Simple, understandable, and scalable product vision</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="section contact">
-    <div class="container">
-      <h2 class="section-title" data-i18n="contact.title">Contact</h2>
-      <div class="contact-content">
-        <p data-i18n="contact.description">
-          Feel free to reach out for plugin development, collaboration, or questions. I'm happy to create custom solutions for your projects.
-        </p>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/mucahitmuzaffer" target="_blank" rel="noopener" class="social-link">
-            <span>💼</span> <span data-i18n="contact.linkedin">LinkedIn</span>
-          </a>
-          <a href="https://github.com/MeetlyTR" target="_blank" rel="noopener" class="social-link">
-            <span>🔗</span> <span data-i18n="contact.github">GitHub</span>
-          </a>
-          <a href="mailto:mucahit.muzaffer@gmail.com" class="social-link">
-            <span>✉️</span> <span data-i18n="contact.email">Email</span>
-          </a>
-        </div>
-      </div>
-        </div>
-      </section>
 
   <!-- Footer -->
     <footer class="footer">
