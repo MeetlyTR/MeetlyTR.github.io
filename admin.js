@@ -369,14 +369,32 @@ function addExperience() {
   showAlert('Experience addition feature coming soon!', 'success');
 }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
+// Initialize on page load - Only if admin panel is visible
+// Authentication check is handled in admin.html
+function initializeAdmin() {
   // Load translations on page load
-  loadTranslations();
+  if (typeof loadTranslations === 'function') {
+    loadTranslations();
+  }
   
   // Load saved data from localStorage
-  loadHero();
-  loadAbout();
-  loadContact();
+  if (typeof loadHero === 'function') {
+    loadHero();
+  }
+  if (typeof loadAbout === 'function') {
+    loadAbout();
+  }
+  if (typeof loadContact === 'function') {
+    loadContact();
+  }
+}
+
+// Wait for admin panel to be shown before initializing
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if admin panel is visible (user is authenticated)
+  const adminPanel = document.getElementById('adminPanel');
+  if (adminPanel && adminPanel.classList.contains('show')) {
+    initializeAdmin();
+  }
 });
 

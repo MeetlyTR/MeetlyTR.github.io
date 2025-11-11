@@ -6,7 +6,12 @@ Admin paneline şu adresten erişebilirsiniz:
 - **URL**: `https://meetlytr.github.io/admin.html`
 - **Yerel**: `http://localhost/admin.html` (local server çalıştırıyorsanız)
 
-⚠️ **Not**: Admin paneli şifresiz ve herkese açıktır. Doğrudan kullanabilirsiniz.
+🔐 **Güvenlik**: Admin paneli şifre korumalıdır. Şifreyi `admin.html` dosyasındaki `ADMIN_PASSWORD` değişkeninden değiştirebilirsiniz.
+
+### Varsayılan Şifre
+- **Varsayılan şifre**: `Meetly2024!`
+- Şifreyi değiştirmek için `admin.html` dosyasını düzenleyin (satır ~565)
+- Oturum süresi: 24 saat (yeniden giriş gerekmez)
 
 ## Özellikler
 
