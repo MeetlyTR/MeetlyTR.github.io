@@ -6,11 +6,7 @@ Admin paneline şu adresten erişebilirsiniz:
 - **URL**: `https://meetlytr.github.io/admin.html`
 - **Yerel**: `http://localhost/admin.html` (local server çalıştırıyorsanız)
 
-🔐 **Güvenlik**: Admin paneli şifre korumalıdır. Şifreyi `admin.html` dosyasındaki `ADMIN_PASSWORD` değişkeninden değiştirebilirsiniz.
-
-### Varsayılan Şifre
-- Varsayılan şifre: `Meetly2024!`
-- Şifreyi değiştirmek için `admin.html` dosyasını düzenleyin
+⚠️ **Not**: Admin paneli şifresiz ve herkese açıktır. Doğrudan kullanabilirsiniz.
 
 ## Özellikler
 
@@ -48,10 +44,10 @@ Admin paneline şu adresten erişebilirsiniz:
 ## Kullanım Adımları
 
 ### 1. İçerik Düzenleme
-1. Admin paneline gidin (şifre gerektirmez)
+1. Admin paneline gidin
 2. Düzenlemek istediğiniz sekmesine tıklayın (Hero, About, vb.)
 3. Metinleri düzenleyin
-4. Resim yüklemek için "Resim Yükle" butonuna tıklayın
+4. Resim yükleyink için "Resim Yükle" butonuna tıklayın
 5. "Kaydet" butonuna tıklayın
 
 ### 2. Resim Yükleme
