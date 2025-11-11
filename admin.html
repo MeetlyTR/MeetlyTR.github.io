@@ -13,8 +13,79 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: #f5f5f5;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 2rem;
+    }
+
+    /* Login Screen */
+    .login-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 3rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .login-container h1 {
+      color: #333;
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+    }
+
+    .login-container p {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .login-form {
+      text-align: left;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .login-form input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .login-error {
+      color: #ef4444;
+      margin-bottom: 1rem;
+      display: none;
+      font-size: 0.9rem;
+    }
+
+    .login-error.show {
+      display: block;
+    }
+
+    /* Admin Panel */
+    .admin-container {
+      display: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+
+    .admin-container.show {
+      display: block;
     }
 
     .container {
@@ -268,8 +339,24 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🚀 Site Yönetim Paneli</h1>
+  <!-- Login Screen -->
+  <div class="login-container" id="loginScreen">
+    <h1>🔐 Admin Panel</h1>
+    <p>Site yönetim paneline erişmek için şifrenizi girin</p>
+    <div class="login-form">
+      <div class="login-error" id="loginError">Hatalı şifre! Lütfen tekrar deneyin.</div>
+      <input type="password" id="passwordInput" placeholder="Şifre" autocomplete="off">
+      <button class="btn" onclick="checkPassword()" style="width: 100%;">Giriş Yap</button>
+    </div>
+  </div>
+
+  <!-- Admin Panel -->
+  <div class="admin-container" id="adminPanel">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <h1>🚀 Site Yönetim Paneli</h1>
+      <button class="btn btn-secondary" onclick="logout()" style="background: #ef4444;">Çıkış Yap</button>
+    </div>
+    <div class="container">
 
     <div class="alert" id="alert"></div>
 
@@ -468,9 +555,87 @@
       <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importData(this)">
       <button class="btn btn-secondary" onclick="downloadJSON()">💾 JSON Olarak İndir</button>
     </div>
+    </div>
   </div>
 
   <script src="admin.js"></script>
+  <script>
+    // Password Protection
+    // Şifreyi buradan değiştirebilirsiniz
+    const ADMIN_PASSWORD = 'Meetly2024!'; // Bu şifreyi değiştirin!
+    const SESSION_KEY = 'adminAuthenticated';
+    const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24 saat
+
+    // Check if user is authenticated
+    function checkAuth() {
+      const authData = localStorage.getItem(SESSION_KEY);
+      if (authData) {
+        const { authenticated, timestamp } = JSON.parse(authData);
+        const now = Date.now();
+        // Check if session is still valid (24 hours)
+        if (authenticated && (now - timestamp) < SESSION_DURATION) {
+          showAdminPanel();
+          return true;
+        } else {
+          // Session expired
+          localStorage.removeItem(SESSION_KEY);
+        }
+      }
+      return false;
+    }
+
+    // Check password
+    function checkPassword() {
+      const password = document.getElementById('passwordInput').value;
+      const errorDiv = document.getElementById('loginError');
+      
+      // Hash password for security (simple hash)
+      if (password === ADMIN_PASSWORD) {
+        // Set authentication
+        localStorage.setItem(SESSION_KEY, JSON.stringify({
+          authenticated: true,
+          timestamp: Date.now()
+        }));
+        showAdminPanel();
+        errorDiv.classList.remove('show');
+      } else {
+        errorDiv.classList.add('show');
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+      }
+    }
+
+    // Show admin panel
+    function showAdminPanel() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminPanel').classList.add('show');
+    }
+
+    // Logout
+    function logout() {
+      if (confirm('Çıkış yapmak istediğinize emin misiniz?')) {
+        localStorage.removeItem(SESSION_KEY);
+        location.reload();
+      }
+    }
+
+    // Enter key to submit
+    document.addEventListener('DOMContentLoaded', function() {
+      const passwordInput = document.getElementById('passwordInput');
+      if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            checkPassword();
+          }
+        });
+      }
+
+      // Check if already authenticated
+      if (!checkAuth()) {
+        passwordInput.focus();
+      }
+    });
+  </script>
 </body>
 </html>
 

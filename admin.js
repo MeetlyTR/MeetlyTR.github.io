@@ -371,12 +371,16 @@ function addExperience() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-  // Load translations on page load
-  loadTranslations();
-  
-  // Load saved data from localStorage
-  loadHero();
-  loadAbout();
-  loadContact();
+  // Check if admin panel is visible (user is authenticated)
+  const adminPanel = document.getElementById('adminPanel');
+  if (adminPanel && adminPanel.classList.contains('show')) {
+    // Load translations on page load
+    loadTranslations();
+    
+    // Load saved data from localStorage
+    loadHero();
+    loadAbout();
+    loadContact();
+  }
 });
 
