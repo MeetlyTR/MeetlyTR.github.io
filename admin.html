@@ -339,10 +339,24 @@
   </style>
 </head>
 <body>
+  <!-- Login Screen -->
+  <div class="login-container" id="loginScreen">
+    <h1>🔐 Admin Panel</h1>
+    <p>Site yönetim paneline erişmek için şifrenizi girin</p>
+    <div class="login-form">
+      <div class="login-error" id="loginError">Hatalı şifre! Lütfen tekrar deneyin.</div>
+      <input type="password" id="passwordInput" placeholder="Şifre" autocomplete="off">
+      <button class="btn" onclick="checkPassword()" style="width: 100%;">Giriş Yap</button>
+    </div>
+  </div>
+
   <!-- Admin Panel -->
-  <div class="admin-container show" id="adminPanel">
-    <div class="container">
+  <div class="admin-container" id="adminPanel">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
       <h1>🚀 Site Yönetim Paneli</h1>
+      <button class="btn btn-secondary" onclick="logout()" style="background: #ef4444;">Çıkış Yap</button>
+    </div>
+    <div class="container">
 
     <div class="alert" id="alert"></div>
 
