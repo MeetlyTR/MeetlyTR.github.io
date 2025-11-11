@@ -1318,11 +1318,11 @@
     </footer>
 
   <!-- Password Modal -->
-  <div class="password-modal" id="passwordModal">
-    <div class="password-modal-content">
+  <div class="password-modal" id="passwordModal" onclick="if(event.target === this) closePasswordModal()">
+    <div class="password-modal-content" onclick="event.stopPropagation()">
       <h3>🔒 Düzenleme Modu</h3>
       <p>Sayfayı düzenlemek için şifre girin:</p>
-      <input type="password" id="passwordInput" placeholder="Şifre" autocomplete="off">
+      <input type="password" id="passwordInput" placeholder="Şifre" autocomplete="off" onkeypress="if(event.key === 'Enter') checkPasswordAndEnableEdit()">
       <div class="password-error" id="passwordError">❌ Yanlış şifre! Lütfen tekrar deneyin.</div>
       <div class="password-modal-buttons">
         <button class="cancel" onclick="closePasswordModal()">İptal</button>
