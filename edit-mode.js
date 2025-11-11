@@ -85,32 +85,87 @@ function restoreOriginalContent() {
 
 // Make elements editable
 function makeElementsEditable() {
-  // Add data-editable attribute to translatable elements
-  const editableElements = document.querySelectorAll('[data-i18n]');
-  editableElements.forEach(el => {
-    // Skip navigation, footer, and buttons
-    if (!el.closest('nav') && !el.closest('footer') && !el.closest('.edit-toolbar') && !el.closest('.edit-button')) {
-      el.setAttribute('data-editable', 'true');
-      el.contentEditable = true;
-      
-      // Add placeholder if empty
-      if (!el.textContent.trim()) {
-        el.setAttribute('data-placeholder', 'Buraya tıklayarak metin ekleyin...');
-      }
-    }
-  });
-  
-  // Make images editable
-  const images = document.querySelectorAll('img:not([src*="data:"])');
-  images.forEach(img => {
-    img.style.cursor = 'pointer';
-    img.setAttribute('data-editable-image', 'true');
-    img.addEventListener('click', function() {
-      if (editMode) {
-        handleImageEdit(this);
+  // Wait a bit for page to fully load and i18n to apply translations
+  setTimeout(() => {
+    // Add data-editable attribute to translatable elements
+    const editableElements = document.querySelectorAll('[data-i18n]');
+    editableElements.forEach(el => {
+      // Skip navigation, footer, buttons, language selector, and edit controls
+      if (!el.closest('nav') && 
+          !el.closest('footer') && 
+          !el.closest('.edit-toolbar') && 
+          !el.closest('.edit-button') &&
+          !el.closest('.language-selector') &&
+          el.getAttribute('data-editable') !== 'false') {
+        
+        // Skip if already editable
+        if (el.hasAttribute('data-editable')) return;
+        
+        // Skip buttons and links (they have special behavior, only edit text)
+        if (el.tagName === 'BUTTON' || (el.tagName === 'A' && el.getAttribute('href'))) {
+          // Make text editable but keep link functionality
+          const textNodes = Array.from(el.childNodes).filter(node => node.nodeType === Node.TEXT_NODE);
+          if (textNodes.length > 0) {
+            el.contentEditable = true;
+            el.setAttribute('data-editable', 'true');
+          }
+          return;
+        }
+        
+        el.setAttribute('data-editable', 'true');
+        el.contentEditable = true;
+        
+        // Add placeholder if empty
+        if (!el.textContent.trim()) {
+          el.setAttribute('data-placeholder', 'Buraya tıklayarak metin ekleyin...');
+        }
       }
     });
-  });
+    
+    // Make images editable (only larger images, not icons)
+    const images = document.querySelectorAll('img:not([src*="data:"]):not([data-editable-image])');
+    images.forEach(img => {
+      // Skip small images (likely icons)
+      if (img.width < 50 && img.height < 50) return;
+      
+      // Skip navigation and footer images
+      if (img.closest('nav') || img.closest('footer') || img.closest('.edit-toolbar')) return;
+      
+      img.style.cursor = 'pointer';
+      img.style.transition = 'all 0.2s';
+      img.setAttribute('data-editable-image', 'true');
+      
+      // Remove existing click listeners by cloning
+      const newImg = img.cloneNode(true);
+      if (img.parentNode) {
+        img.parentNode.replaceChild(newImg, img);
+      }
+      
+      newImg.addEventListener('mouseenter', function() {
+        if (editMode) {
+          this.style.opacity = '0.8';
+          this.style.transform = 'scale(1.02)';
+          this.style.boxShadow = '0 4px 12px rgba(99, 102, 241, 0.3)';
+        }
+      });
+      
+      newImg.addEventListener('mouseleave', function() {
+        if (editMode) {
+          this.style.opacity = '1';
+          this.style.transform = 'scale(1)';
+          this.style.boxShadow = '';
+        }
+      });
+      
+      newImg.addEventListener('click', function(e) {
+        if (editMode) {
+          e.preventDefault();
+          e.stopPropagation();
+          handleImageEdit(this);
+        }
+      }, true); // Use capture phase
+    });
+  }, 300); // Wait for i18n to load
 }
 
 // Remove editable
