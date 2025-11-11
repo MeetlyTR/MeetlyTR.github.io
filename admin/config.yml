@@ -1,0 +1,118 @@
+backend:
+  name: git-gateway
+  branch: main
+  repo: MeetlyTR/MeetlyTR.github.io
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  # Main Page Content
+  - name: "hero"
+    label: "Hero Section"
+    files:
+      - file: "content/hero.json"
+        label: "Hero Content"
+        name: "hero"
+        fields:
+          - {label: "Title (EN)", name: "title_en", widget: "string"}
+          - {label: "Subtitle (EN)", name: "subtitle_en", widget: "string"}
+          - {label: "Description (EN)", name: "description_en", widget: "text"}
+          - {label: "Title (TR)", name: "title_tr", widget: "string"}
+          - {label: "Subtitle (TR)", name: "subtitle_tr", widget: "string"}
+          - {label: "Description (TR)", name: "description_tr", widget: "text"}
+          - {label: "Background Image", name: "bg_image", widget: "image", required: false}
+          - {label: "Profile Image", name: "profile_image", widget: "image", required: false}
+
+  # Services
+  - name: "services"
+    label: "Services"
+    folder: "content/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title (EN)", name: "title_en", widget: "string"}
+      - {label: "Description (EN)", name: "description_en", widget: "text"}
+      - {label: "Title (TR)", name: "title_tr", widget: "string"}
+      - {label: "Description (TR)", name: "description_tr", widget: "text"}
+      - {label: "Icon", name: "icon", widget: "string"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - {label: "Features", name: "features", widget: "list", field: {label: "Feature", name: "feature", widget: "string"}}
+
+  # Projects
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title (EN)", name: "title_en", widget: "string"}
+      - {label: "Description (EN)", name: "description_en", widget: "text"}
+      - {label: "Title (TR)", name: "title_tr", widget: "string"}
+      - {label: "Description (TR)", name: "description_tr", widget: "text"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - {label: "Link", name: "link", widget: "string", required: false}
+      - {label: "Technologies", name: "technologies", widget: "list", field: {label: "Tech", name: "tech", widget: "string"}}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+
+  # Experience
+  - name: "experience"
+    label: "Experience"
+    folder: "content/experience"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Company (EN)", name: "company_en", widget: "string"}
+      - {label: "Position (EN)", name: "position_en", widget: "string"}
+      - {label: "Company (TR)", name: "company_tr", widget: "string"}
+      - {label: "Position (TR)", name: "position_tr", widget: "string"}
+      - {label: "Period", name: "period", widget: "string"}
+      - {label: "Description (EN)", name: "description_en", widget: "markdown"}
+      - {label: "Description (TR)", name: "description_tr", widget: "markdown"}
+      - {label: "Icon", name: "icon", widget: "string", required: false}
+      - {label: "Order", name: "order", widget: "number", default: 0}
+
+  # About Section
+  - name: "about"
+    label: "About Me"
+    files:
+      - file: "content/about.json"
+        label: "About Content"
+        name: "about"
+        fields:
+          - {label: "Title (EN)", name: "title_en", widget: "string"}
+          - {label: "Paragraph 1 (EN)", name: "p1_en", widget: "markdown"}
+          - {label: "Paragraph 2 (EN)", name: "p2_en", widget: "markdown"}
+          - {label: "Paragraph 3 (EN)", name: "p3_en", widget: "markdown"}
+          - {label: "Paragraph 4 (EN)", name: "p4_en", widget: "markdown"}
+          - {label: "Title (TR)", name: "title_tr", widget: "string"}
+          - {label: "Paragraph 1 (TR)", name: "p1_tr", widget: "markdown"}
+          - {label: "Paragraph 2 (TR)", name: "p2_tr", widget: "markdown"}
+          - {label: "Paragraph 3 (TR)", name: "p3_tr", widget: "markdown"}
+          - {label: "Paragraph 4 (TR)", name: "p4_tr", widget: "markdown"}
+          - {label: "Profile Image", name: "profile_image", widget: "image", required: false}
+
+  # Contact
+  - name: "contact"
+    label: "Contact"
+    files:
+      - file: "content/contact.json"
+        label: "Contact Information"
+        name: "contact"
+        fields:
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "LinkedIn", name: "linkedin", widget: "string"}
+          - {label: "GitHub", name: "github", widget: "string"}
+          - {label: "Description (EN)", name: "description_en", widget: "text"}
+          - {label: "Description (TR)", name: "description_tr", widget: "text"}
+
+  # Translations (for all languages)
+  - name: "translations"
+    label: "Translations"
+    files:
+      - file: "translations.json"
+        label: "All Translations"
+        name: "translations"
+        fields:
+          - {label: "Translations", name: "translations", widget: "code", default_language: "json"}
+

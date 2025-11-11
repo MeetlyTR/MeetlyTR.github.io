@@ -1,0 +1,83 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+  # Use this line for GitHub
+  repo: MeetlyTR/MeetlyTR.github.io # Repository path
+
+# Uncomment below to enable drafts
+# publish_mode: editorial_workflow
+
+media_folder: "images" # Media files will be stored in the repo under images/
+public_folder: "/images" # The src attribute for uploaded media will begin with /images
+
+collections:
+  - name: "pages" # Used in routes, e.g., /admin/collections/pages
+    label: "Pages" # Used in the UI
+    folder: "." # The path to the folder where the documents are stored
+    create: false # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "translations"
+    label: "Translations"
+    folder: "."
+    create: false
+    slug: "{{slug}}"
+    fields:
+      - {label: "Language", name: "language", widget: "string"}
+      - {label: "Translations", name: "translations", widget: "object", fields: [
+          {label: "Navigation", name: "nav", widget: "object", fields: [
+            {label: "Home", name: "home", widget: "string"},
+            {label: "Services", name: "services", widget: "string"},
+            {label: "Projects", name: "projects", widget: "string"},
+            {label: "About", name: "about", widget: "string"},
+            {label: "Experience", name: "experience", widget: "string"},
+            {label: "Contact", name: "contact", widget: "string"}
+          ]},
+          {label: "Hero", name: "hero", widget: "object", fields: [
+            {label: "Title", name: "title", widget: "string"},
+            {label: "Subtitle", name: "subtitle", widget: "string"},
+            {label: "Description", name: "description", widget: "text"},
+            {label: "CTA Services", name: "ctaServices", widget: "string"},
+            {label: "CTA Contact", name: "ctaContact", widget: "string"}
+          ]}
+        ]}
+
+  - name: "content"
+    label: "Site Content"
+    folder: "content"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - {label: "Link", name: "link", widget: "string", required: false}
+      - {label: "Technologies", name: "technologies", widget: "list", field: {label: "Technology", name: "tech", widget: "string"}}
+
+  - name: "experience"
+    label: "Experience"
+    folder: "content/experience"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Company", name: "company", widget: "string"}
+      - {label: "Position", name: "position", widget: "string"}
+      - {label: "Period", name: "period", widget: "string"}
+      - {label: "Description", name: "description", widget: "markdown"}
+      - {label: "Icon", name: "icon", widget: "string", required: false}
+

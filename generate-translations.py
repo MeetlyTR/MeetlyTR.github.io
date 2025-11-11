@@ -1,0 +1,584 @@
+#!/usr/bin/env python3
+"""
+Translation file generator for 30+ languages
+Generates translations.json with English base and translations for all languages
+"""
+
+import json
+import os
+
+# Base English content structure
+base_english = {
+    "nav": {
+        "home": "Home",
+        "services": "Services",
+        "projects": "Projects",
+        "about": "About",
+        "experience": "Experience",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "Unreal Engine & Unity Plugin Developer",
+        "subtitle": "Game Engine Plugins and Mobile Development Expert",
+        "description": "I specialize in professional plugin development for Unreal Engine and Unity, performance optimization, and developer tools. I create solutions that optimize game developers' workflows.",
+        "ctaServices": "My Services",
+        "ctaContact": "Get In Touch"
+    },
+    "services": {
+        "title": "My Services",
+        "subtitle": "Professional plugin development services for Unreal Engine and Unity",
+        "unreal": {
+            "title": "Unreal Engine Plugin",
+            "description": "C++ and Blueprint-based plugin development for Unreal Engine. Editor tools, runtime systems, and performance optimizations.",
+            "features": ["C++ Module Development", "Blueprint Function Library", "Editor Utility Widgets", "Asset Management Tools", "Performance Optimization", "Multi-threading Support"]
+        },
+        "unity": {
+            "title": "Unity Plugin",
+            "description": "C#-based Editor extensions and runtime plugins for Unity. Custom Inspectors, Editor Windows, and workflow improvements.",
+            "features": ["C# Editor Extensions", "Custom Property Drawers", "Editor Window Tools", "Asset Pipeline Integration", "ScriptableObject Systems", "Build Pipeline Automation"]
+        },
+        "mobile": {
+            "title": "Mobile Development",
+            "description": "Cross-platform mobile app development with SwiftUI and React Native. AI-powered features and modern user experience.",
+            "features": ["SwiftUI Development", "React Native Apps", "iOS Native Development", "AI Integration", "Design Systems", "Performance Optimization"]
+        }
+    },
+    "about": {
+        "title": "About Me",
+        "p1": "Hello! I'm **Muzaffer Karafil**. I combine the discipline and precision from manufacturing with a passion for technology.",
+        "p2": "I work in the **Paint Maintenance** team at Togg, and at the same time, I develop the **Meetly** project as a mobile and AI-focused product developer.",
+        "p3": "I specialize in professional plugin development for **Unreal Engine** and **Unity**. Creating custom solutions for game engines, optimizing developers' workflows, and developing performant tools is my passion.",
+        "p4": "Every plugin comes with modular architecture, performance-oriented design, and developer-friendly documentation. Cross-platform support and version control-friendly structure guarantee the success of your projects."
+    },
+    "projects": {
+        "title": "My Projects",
+        "subtitle": "Unreal Engine, Unity, and mobile development projects",
+        "meetly": {
+            "title": "Meetly",
+            "description": "Centralized appointment and service management platform. Modern mobile app developed with SwiftUI, featuring AI-powered capabilities. Multilingual interface, business–branch–employee hierarchy, and scalable architecture.",
+            "viewDetails": "View Details"
+        },
+        "blueprintOutline": {
+            "title": "BlueprintOutline - Unreal Engine Plugin",
+            "description": "C++ and Blueprint-based Blueprint outline visualization plugin for Unreal Engine. Editor tools, runtime systems, and performance optimization solutions. Modular architecture and comprehensive documentation.",
+            "viewDetails": "View Details →"
+        },
+        "unityTools": {
+            "title": "Unity Editor Tools",
+            "description": "C#-based Editor extensions and workflow improvement tools for Unity. Custom Inspectors, Editor Windows, asset pipeline integration, and build automation systems.",
+            "viewDetails": "View Details →"
+        }
+    },
+    "skills": {
+        "title": "My Skills",
+        "gameEngines": "Game Engines",
+        "mobile": "Mobile Development",
+        "industrial": "Industrial",
+        "general": "General"
+    },
+    "experience": {
+        "title": "Experience",
+        "togg": {
+            "title": "🚘 Togg — Paint Maintenance",
+            "period": "April 2022 – Present",
+            "items": ["Continuity and efficiency in paint shop maintenance & quality processes", "DXQ3DOnside, Power Automate, and related automation competencies", "Optimization and problem-solving in industrial processes"]
+        },
+        "honda1": {
+            "title": "🏍 Honda Turkey Inc. — Facility Maintenance Operator",
+            "period": "May 2020 – October 2021",
+            "items": ["Maintenance & operation of Ec-Pt Oven, Top Coat Oven, Wax Oven, Sealer Oven, Minimax System processes", "System optimization and continuity management"]
+        },
+        "honda2": {
+            "title": "🏍 Honda Turkey Inc. — Production Operator",
+            "period": "September 2017 – May 2020",
+            "items": ["Production line operations, quality control, and continuity", "Process improvement and efficiency enhancement projects"]
+        },
+        "trio1": {
+            "title": "📡 Trio Mobile — Technical Support Manager",
+            "period": "August 2016 – May 2018",
+            "items": ["Technical support team management, customer relations, and field solutions", "Team coordination and technical problem solving"]
+        },
+        "meetly": {
+            "title": "📱 Meetly — Developer & Product Owner",
+            "period": "Ongoing",
+            "items": ["Centralized appointment & service management platform development", "Multilingual interface, business–branch–employee hierarchy", "Modern SwiftUI components and AI-powered features", "Simple, understandable, and scalable product vision"]
+        }
+    },
+    "contact": {
+        "title": "Contact",
+        "description": "Feel free to reach out for plugin development, collaboration, or questions. I'm happy to create custom solutions for your projects.",
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "email": "Email"
+    },
+    "footer": {
+        "text": "© {year} Muzaffer Karafil · Unreal Engine & Unity Plugin Developer"
+    },
+    "blueprintOutline": {
+        "hero": {
+            "title": "🎯 BlueprintOutline",
+            "subtitle": "Unreal Engine Plugin",
+            "description": "Better organize and visualize your Blueprints. BlueprintOutline is a professional plugin that allows you to draw and visualize the outline of your Blueprints in Unreal Engine.",
+            "ctaReddit": "Reddit Community",
+            "ctaFeatures": "Features"
+        },
+        "features": {
+            "title": "Features",
+            "subtitle": "Better organize and visualize your Blueprints with BlueprintOutline",
+            "visualization": {
+                "title": "Blueprint Outline Visualization",
+                "description": "Visualize and better organize your Blueprint outlines. Understand complex Blueprint structures more easily."
+            },
+            "customizable": {
+                "title": "Customizable Appearance",
+                "description": "Customize the outline appearance to your needs. Change colors, line thickness, and other visual settings."
+            },
+            "performance": {
+                "title": "Performance Optimization",
+                "description": "Runs with low overhead and does not affect your Blueprint performance. Works smoothly even in large projects."
+            },
+            "integration": {
+                "title": "Editor Integration",
+                "description": "Fully integrated into Unreal Engine Editor. Directly usable in Blueprint Editor and easy installation."
+            },
+            "modular": {
+                "title": "Modular Structure",
+                "description": "Easily extensible with modular architecture. Customizable and extensible according to your needs."
+            },
+            "crossPlatform": {
+                "title": "Cross-Platform Support",
+                "description": "Works on Windows, Mac, and Linux. Supported on all Unreal Engine platforms."
+            }
+        },
+        "screenshots": {
+            "title": "Screenshots",
+            "subtitle": "See how BlueprintOutline works",
+            "visualization": "Blueprint Outline Visualization",
+            "integration": "Editor Integration",
+            "settings": "Customizable Settings"
+        },
+        "installation": {
+            "title": "Installation",
+            "subtitle": "Add BlueprintOutline to your Unreal Engine project",
+            "step1": {
+                "title": "1. Download the Plugin",
+                "description": "Download the BlueprintOutline plugin from GitHub or Unreal Engine Marketplace."
+            },
+            "step2": {
+                "title": "2. Copy to Plugin Folder",
+                "description": "Copy the downloaded plugin to your Unreal Engine project's Plugins folder."
+            },
+            "step3": {
+                "title": "3. Enable the Plugin",
+                "description": "In Unreal Engine Editor, find the BlueprintOutline plugin in Edit > Plugins menu and enable it. Restart the Editor."
+            },
+            "step4": {
+                "title": "4. Start Using",
+                "description": "Open Blueprint Editor and start using BlueprintOutline features. Outline visualization will be automatically active."
+            }
+        },
+        "community": {
+            "title": "Community",
+            "subtitle": "Join the BlueprintOutline community, ask questions, and share feedback",
+            "reddit": "Reddit Community",
+            "github": "GitHub",
+            "contact": "Contact"
+        }
+    },
+    "unityPlugin": {
+        "hero": {
+            "title": "⚡ Unity Editor Tools",
+            "subtitle": "Professional Editor Extensions and Plugins",
+            "description": "Enhance your Unity Editor and optimize your workflow. Custom Inspectors, Editor Windows, asset pipeline integration, and build automation systems to accelerate your Unity development process.",
+            "ctaFAB": "FAB Asset Store",
+            "ctaFeatures": "Features"
+        },
+        "features": {
+            "title": "Features",
+            "subtitle": "Professional tools that enhance your Unity Editor",
+            "inspectors": {
+                "title": "Custom Inspectors",
+                "description": "Customize your Unity Inspector and provide a better experience for developers. Custom property drawers and visual arrangements."
+            },
+            "windows": {
+                "title": "Editor Windows",
+                "description": "Add custom windows to Unity Editor. Tools and helper windows that optimize your workflow."
+            },
+            "pipeline": {
+                "title": "Asset Pipeline Integration",
+                "description": "Integrate into your asset pipeline. Automatic asset processing, import settings, and pipeline optimizations."
+            },
+            "scriptableObjects": {
+                "title": "ScriptableObject Systems",
+                "description": "ScriptableObject-based data management systems. Powerful solutions for configuration files and data management."
+            },
+            "build": {
+                "title": "Build Pipeline Automation",
+                "description": "Automate your build processes. Optimize your build process with custom build scripts and automation tools."
+            },
+            "performance": {
+                "title": "Performance Optimization",
+                "description": "Optimize Editor performance. Tools that work smoothly even in large projects and do not affect editor performance."
+            }
+        },
+        "screenshots": {
+            "title": "Screenshots",
+            "subtitle": "See how Unity Editor tools work",
+            "inspectors": "Custom Inspector View",
+            "windows": "Editor Window Tools",
+            "pipeline": "Asset Pipeline Integration"
+        },
+        "installation": {
+            "title": "Installation",
+            "subtitle": "Add Unity Editor tools to your project",
+            "step1": {
+                "title": "1. Download the Plugin",
+                "description": "Download the Unity Editor plugin from FAB Asset Store or GitHub."
+            },
+            "step2": {
+                "title": "2. Import Unity Package",
+                "description": "In Unity Editor, select the downloaded .unitypackage file from Assets > Import Package > Custom Package menu and import it."
+            },
+            "step3": {
+                "title": "3. Check Editor Scripts",
+                "description": "Make sure Editor scripts are in the Editor folder. The Editor folder is automatically recognized by Unity."
+            },
+            "step4": {
+                "title": "4. Start Using",
+                "description": "Restart Unity Editor and access new tools from the Editor menu. Custom Inspectors and Editor Windows will be automatically active."
+            }
+        },
+        "community": {
+            "title": "Community",
+            "subtitle": "Join the Unity Editor tools community, ask questions, and share feedback",
+            "fab": "FAB Asset Store",
+            "github": "GitHub",
+            "contact": "Contact"
+        }
+    }
+}
+
+# Language names mapping
+language_names = {
+    "en": "English",
+    "tr": "Türkçe",
+    "de": "Deutsch",
+    "fr": "Français",
+    "es": "Español",
+    "it": "Italiano",
+    "pt": "Português",
+    "ru": "Русский",
+    "ja": "日本語",
+    "zh": "中文",
+    "ko": "한국어",
+    "ar": "العربية",
+    "nl": "Nederlands",
+    "sv": "Svenska",
+    "no": "Norsk",
+    "da": "Dansk",
+    "fi": "Suomi",
+    "pl": "Polski",
+    "cs": "Čeština",
+    "hu": "Magyar",
+    "ro": "Română",
+    "bg": "Български",
+    "el": "Ελληνικά",
+    "hr": "Hrvatski",
+    "sr": "Српски",
+    "sk": "Slovenčina",
+    "sl": "Slovenščina",
+    "uk": "Українська",
+    "et": "Eesti",
+    "lv": "Latviešu",
+    "lt": "Lietuvių",
+    "he": "עברית",
+    "th": "ไทย",
+    "vi": "Tiếng Việt",
+    "hi": "हिन्दी",
+    "id": "Bahasa Indonesia",
+    "ms": "Bahasa Melayu",
+    "tl": "Filipino"
+}
+
+# Turkish translations
+turkish_translations = {
+    "nav": {
+        "home": "Ana Sayfa",
+        "services": "Servisler",
+        "projects": "Projeler",
+        "about": "Hakkımda",
+        "experience": "Deneyim",
+        "contact": "İletişim"
+    },
+    "hero": {
+        "title": "Unreal Engine & Unity Plugin Developer",
+        "subtitle": "Oyun Motoru Eklentileri ve Mobil Geliştirme Uzmanı",
+        "description": "Unreal Engine ve Unity için profesyonel plugin geliştirme, performans optimizasyonu ve geliştirici araçları konusunda uzmanım. Oyun geliştiricilerinin iş akışlarını optimize eden çözümler üretiyorum.",
+        "ctaServices": "Servislerim",
+        "ctaContact": "İletişime Geç"
+    },
+    "services": {
+        "title": "Servislerim",
+        "subtitle": "Unreal Engine ve Unity için profesyonel plugin geliştirme hizmetleri",
+        "unreal": {
+            "title": "Unreal Engine Plugin",
+            "description": "Unreal Engine için C++ ve Blueprint tabanlı plugin geliştirme. Editor tool'ları, runtime sistemleri ve performans optimizasyonları.",
+            "features": ["C++ Module Development", "Blueprint Function Library", "Editor Utility Widgets", "Asset Management Tools", "Performance Optimization", "Multi-threading Support"]
+        },
+        "unity": {
+            "title": "Unity Plugin",
+            "description": "Unity için C# tabanlı Editor extension'lar ve runtime plugin'ler. Custom Inspector'lar, Editor Window'lar ve workflow iyileştirmeleri.",
+            "features": ["C# Editor Extensions", "Custom Property Drawers", "Editor Window Tools", "Asset Pipeline Integration", "ScriptableObject Systems", "Build Pipeline Automation"]
+        },
+        "mobile": {
+            "title": "Mobil Geliştirme",
+            "description": "SwiftUI ve React Native ile cross-platform mobil uygulama geliştirme. AI-powered özellikler ve modern kullanıcı deneyimi.",
+            "features": ["SwiftUI Development", "React Native Apps", "iOS Native Development", "AI Integration", "Design Systems", "Performance Optimization"]
+        }
+    },
+    "about": {
+        "title": "Hakkımda",
+        "p1": "Merhaba! Ben **Muzaffer Karafil**. Üretim disiplininden gelen düzen ve hassasiyeti teknoloji merakıyla birleştiriyorum.",
+        "p2": "Togg'da **Paint Maintenance** ekibinde görev alıyor; aynı zamanda **Meetly** projesinin geliştiricisi olarak mobil ve yapay zekâ odaklı ürünler üzerinde çalışıyorum.",
+        "p3": "**Unreal Engine** ve **Unity** için profesyonel plugin geliştirme konusunda uzmanlaşıyorum. Oyun motorlarına özel çözümler üretmek, geliştiricilerin iş akışlarını optimize etmek ve performanslı araçlar geliştirmek benim tutkum.",
+        "p4": "Her plugin, modüler mimari, performans odaklı tasarım ve geliştirici dostu dokümantasyon ile gelir. Cross-platform desteği ve version control friendly yapı, projelerinizin başarısını garanti eder."
+    },
+    "projects": {
+        "title": "Projelerim",
+        "subtitle": "Unreal Engine, Unity ve mobil geliştirme projelerim",
+        "meetly": {
+            "title": "Meetly",
+            "description": "Merkezi randevu ve hizmet yönetimi platformu. SwiftUI ile geliştirilmiş, AI-powered özellikler içeren modern mobil uygulama. Çok dilli arayüz, işletme–şube–çalışan hiyerarşisi ve ölçeklenebilir mimari.",
+            "viewDetails": "Detayları Gör"
+        },
+        "blueprintOutline": {
+            "title": "BlueprintOutline - Unreal Engine Plugin",
+            "description": "Unreal Engine için C++ ve Blueprint tabanlı Blueprint outline görselleştirme plugin'i. Editor tool'ları, runtime sistemleri ve performance optimization çözümleri. Modüler mimari ve kapsamlı dokümantasyon.",
+            "viewDetails": "Detayları Gör →"
+        },
+        "unityTools": {
+            "title": "Unity Editor Tools",
+            "description": "Unity için C# tabanlı Editor extension'lar ve workflow iyileştirme araçları. Custom Inspector'lar, Editor Window'lar, asset pipeline entegrasyonu ve build automation sistemleri.",
+            "viewDetails": "Detayları Gör →"
+        }
+    },
+    "skills": {
+        "title": "Yetkinliklerim",
+        "gameEngines": "Game Engines",
+        "mobile": "Mobil Geliştirme",
+        "industrial": "Endüstriyel",
+        "general": "Genel"
+    },
+    "experience": {
+        "title": "Deneyim",
+        "togg": {
+            "title": "🚘 Togg — Paint Maintenance",
+            "period": "Nisan 2022 – Güncel",
+            "items": ["Boyahane bakım & kalite süreçlerinde süreklilik ve verimlilik", "DXQ3DOnside, Power Automate ve ilgili otomasyon yetkinlikleri", "Endüstriyel süreçlerde optimizasyon ve problem çözme"]
+        },
+        "honda1": {
+            "title": "🏍 Honda Türkiye A.Ş. — Facility Maintenance Operator",
+            "period": "Mayıs 2020 – Ekim 2021",
+            "items": ["Ec-Pt Oven, Top Coat Oven, Wax Oven, Sealer Oven, Minimax System süreçlerinde bakım & işletme", "Sistem optimizasyonu ve süreklilik yönetimi"]
+        },
+        "honda2": {
+            "title": "🏍 Honda Türkiye A.Ş. — Üretim Operatörü",
+            "period": "Eylül 2017 – Mayıs 2020",
+            "items": ["Üretim hattı operasyonları, kalite kontrol ve süreklilik", "Proses iyileştirme ve verimlilik artırma projeleri"]
+        },
+        "trio1": {
+            "title": "📡 Trio Mobil — Technical Support Manager",
+            "period": "Ağustos 2016 – Mayıs 2018",
+            "items": ["Teknik destek ekibi yönetimi, müşteri ilişkileri ve saha çözümleri", "Ekip koordinasyonu ve teknik problem çözme"]
+        },
+        "meetly": {
+            "title": "📱 Meetly — Geliştirici & Ürün Sahibi",
+            "period": "Devam Ediyor",
+            "items": ["Merkezi randevu & hizmet yönetimi platformu geliştirme", "Çok dilli arayüz, işletme–şube–çalışan hiyerarşisi", "Modern SwiftUI bileşenleri ve AI-powered özellikler", "Basit, anlaşılır ve ölçeklenebilir ürün vizyonu"]
+        }
+    },
+    "contact": {
+        "title": "İletişim",
+        "description": "Plugin geliştirme, işbirliği veya sorularınız için benimle iletişime geçebilirsiniz. Projeleriniz için özel çözümler üretmekten mutluluk duyarım.",
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "email": "Email"
+    },
+    "footer": {
+        "text": "© {year} Muzaffer Karafil · Unreal Engine & Unity Plugin Developer"
+    },
+    "blueprintOutline": {
+        "hero": {
+            "title": "🎯 BlueprintOutline",
+            "subtitle": "Unreal Engine Plugin",
+            "description": "Blueprint'lerinizi daha iyi organize edin ve görselleştirin. BlueprintOutline, Unreal Engine'de Blueprint'lerinizin outline'ını çizmenize ve görselleştirmenize olanak tanıyan profesyonel bir plugin'dir.",
+            "ctaReddit": "Reddit Topluluğu",
+            "ctaFeatures": "Özellikler"
+        },
+        "features": {
+            "title": "Özellikler",
+            "subtitle": "BlueprintOutline ile Blueprint'lerinizi daha iyi organize edin ve görselleştirin",
+            "visualization": {
+                "title": "Blueprint Outline Görselleştirme",
+                "description": "Blueprint'lerinizin outline'ını görselleştirin ve daha iyi organize edin. Kompleks Blueprint yapılarını daha kolay anlayın."
+            },
+            "customizable": {
+                "title": "Özelleştirilebilir Görünüm",
+                "description": "Outline görünümünü ihtiyaçlarınıza göre özelleştirin. Renkler, çizgi kalınlığı ve diğer görsel ayarları değiştirebilirsiniz."
+            },
+            "performance": {
+                "title": "Performans Optimizasyonu",
+                "description": "Düşük overhead ile çalışır ve Blueprint performansınızı etkilemez. Büyük projelerde bile sorunsuz çalışır."
+            },
+            "integration": {
+                "title": "Editor Entegrasyonu",
+                "description": "Unreal Engine Editor'üne tam entegre. Blueprint Editor içinde doğrudan kullanılabilir ve kolay kurulum."
+            },
+            "modular": {
+                "title": "Modüler Yapı",
+                "description": "Modüler mimari ile kolayca genişletilebilir. İhtiyaçlarınıza göre özelleştirilebilir ve genişletilebilir."
+            },
+            "crossPlatform": {
+                "title": "Cross-Platform Desteği",
+                "description": "Windows, Mac ve Linux'ta çalışır. Tüm Unreal Engine platformlarında desteklenir."
+            }
+        },
+        "screenshots": {
+            "title": "Görseller",
+            "subtitle": "BlueprintOutline'ın nasıl çalıştığını görün",
+            "visualization": "Blueprint Outline Görselleştirme",
+            "integration": "Editor Entegrasyonu",
+            "settings": "Özelleştirilebilir Ayarlar"
+        },
+        "installation": {
+            "title": "Kurulum",
+            "subtitle": "BlueprintOutline'ı Unreal Engine projenize ekleyin",
+            "step1": {
+                "title": "1. Plugin'i İndirin",
+                "description": "BlueprintOutline plugin'ini GitHub'dan veya Unreal Engine Marketplace'den indirin."
+            },
+            "step2": {
+                "title": "2. Plugin Klasörüne Kopyalayın",
+                "description": "İndirdiğiniz plugin'i Unreal Engine projenizin Plugins klasörüne kopyalayın."
+            },
+            "step3": {
+                "title": "3. Plugin'i Etkinleştirin",
+                "description": "Unreal Engine Editor'ünde Edit > Plugins menüsünden BlueprintOutline plugin'ini bulun ve etkinleştirin. Editor'ü yeniden başlatın."
+            },
+            "step4": {
+                "title": "4. Kullanmaya Başlayın",
+                "description": "Blueprint Editor'ü açın ve BlueprintOutline özelliklerini kullanmaya başlayın. Outline görselleştirmesi otomatik olarak aktif olacaktır."
+            }
+        },
+        "community": {
+            "title": "Topluluk",
+            "subtitle": "BlueprintOutline topluluğuna katılın, sorularınızı sorun ve geri bildirim paylaşın",
+            "reddit": "Reddit Topluluğu",
+            "github": "GitHub",
+            "contact": "İletişim"
+        }
+    },
+    "unityPlugin": {
+        "hero": {
+            "title": "⚡ Unity Editor Tools",
+            "subtitle": "Profesyonel Editor Extension'lar ve Plugin'ler",
+            "description": "Unity Editor'ünüzü geliştirin ve workflow'unuzu optimize edin. Custom Inspector'lar, Editor Window'lar, asset pipeline entegrasyonu ve build automation sistemleri ile Unity geliştirme sürecinizi hızlandırın.",
+            "ctaFAB": "FAB Asset Store",
+            "ctaFeatures": "Özellikler"
+        },
+        "features": {
+            "title": "Özellikler",
+            "subtitle": "Unity Editor'ünüzü güçlendiren profesyonel araçlar",
+            "inspectors": {
+                "title": "Custom Inspector'lar",
+                "description": "Unity Inspector'ınızı özelleştirin ve geliştiriciler için daha iyi bir deneyim sunun. Custom property drawer'lar ve görsel düzenlemeler."
+            },
+            "windows": {
+                "title": "Editor Window'lar",
+                "description": "Unity Editor'e özel window'lar ekleyin. Workflow'unuzu optimize eden araçlar ve yardımcı pencereler."
+            },
+            "pipeline": {
+                "title": "Asset Pipeline Entegrasyonu",
+                "description": "Asset pipeline'ınıza entegre olun. Otomatik asset işleme, import ayarları ve pipeline optimizasyonları."
+            },
+            "scriptableObjects": {
+                "title": "ScriptableObject Sistemleri",
+                "description": "ScriptableObject tabanlı veri yönetimi sistemleri. Konfigürasyon dosyaları ve veri yönetimi için güçlü çözümler."
+            },
+            "build": {
+                "title": "Build Pipeline Automation",
+                "description": "Build süreçlerinizi otomatikleştirin. Custom build script'leri ve automation araçları ile build sürecinizi optimize edin."
+            },
+            "performance": {
+                "title": "Performans Optimizasyonu",
+                "description": "Editor performansını optimize edin. Büyük projelerde bile sorunsuz çalışan ve editor performansını etkilemeyen araçlar."
+            }
+        },
+        "screenshots": {
+            "title": "Görseller",
+            "subtitle": "Unity Editor araçlarının nasıl çalıştığını görün",
+            "inspectors": "Custom Inspector Görünümü",
+            "windows": "Editor Window Araçları",
+            "pipeline": "Asset Pipeline Entegrasyonu"
+        },
+        "installation": {
+            "title": "Kurulum",
+            "subtitle": "Unity Editor araçlarını projenize ekleyin",
+            "step1": {
+                "title": "1. Plugin'i İndirin",
+                "description": "Unity Editor plugin'ini FAB Asset Store'dan veya GitHub'dan indirin."
+            },
+            "step2": {
+                "title": "2. Unity Package'i İçe Aktarın",
+                "description": "Unity Editor'de Assets > Import Package > Custom Package menüsünden indirdiğiniz .unitypackage dosyasını seçin ve içe aktarın."
+            },
+            "step3": {
+                "title": "3. Editor Script'lerini Kontrol Edin",
+                "description": "Editor script'lerinin Editor klasöründe olduğundan emin olun. Editor klasörü Unity tarafından otomatik olarak tanınır."
+            },
+            "step4": {
+                "title": "4. Kullanmaya Başlayın",
+                "description": "Unity Editor'ü yeniden başlatın ve Editor menüsünden yeni araçlara erişin. Custom Inspector'lar ve Editor Window'lar otomatik olarak aktif olacaktır."
+            }
+        },
+        "community": {
+            "title": "Topluluk",
+            "subtitle": "Unity Editor araçları topluluğuna katılın, sorularınızı sorun ve geri bildirim paylaşın",
+            "fab": "FAB Asset Store",
+            "github": "GitHub",
+            "contact": "İletişim"
+        }
+    }
+}
+
+# For now, we'll use English as base for all languages
+# In production, you would use a translation API or manual translations
+def generate_translations():
+    translations = {}
+    
+    # English is the base
+    translations["en"] = base_english
+    
+    # Turkish translations
+    translations["tr"] = turkish_translations
+    
+    # For other languages, we'll use English as placeholder
+    # In production, replace with actual translations
+    for lang_code in language_names.keys():
+        if lang_code not in ["en", "tr"]:
+            # Use English as placeholder - replace with actual translations
+            translations[lang_code] = base_english
+    
+    return translations
+
+if __name__ == "__main__":
+    translations = generate_translations()
+    
+    # Write to file
+    output_file = "translations.json"
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(translations, f, ensure_ascii=False, indent=2)
+    
+    print(f"Generated {output_file} with {len(translations)} languages")
+    print(f"Languages: {', '.join(translations.keys())}")
+

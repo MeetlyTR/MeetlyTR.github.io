@@ -29,8 +29,8 @@ class I18n {
       return langCode;
     }
 
-    // Default to Turkish
-    return 'tr';
+    // Default to English
+    return 'en';
   }
 
   async loadTranslations() {
@@ -46,30 +46,59 @@ class I18n {
   }
 
   t(key, params = {}) {
+    if (!this.translations[this.currentLang]) {
+      return key;
+    }
+    
     const keys = key.split('.');
     let value = this.translations[this.currentLang];
+    let fallbackValue = this.translations['en'];
     
-    for (const k of keys) {
-      if (value && value[k]) {
-        value = value[k];
-      } else {
-        // Fallback to Turkish if translation not found
-        value = this.translations['tr'];
-        for (const k2 of keys) {
-          if (value && value[k2]) {
-            value = value[k2];
-          } else {
-            return key; // Return key if translation not found
-          }
+    // Navigate through the translation object
+    for (let i = 0; i < keys.length; i++) {
+      const k = keys[i];
+      const numKey = parseInt(k);
+      const isNumeric = !isNaN(numKey) && isFinite(k);
+      
+      // Try current language first
+      if (value !== undefined && value !== null) {
+        if (isNumeric && Array.isArray(value)) {
+          value = value[numKey];
+        } else if (!isNumeric && typeof value === 'object' && k in value) {
+          value = value[k];
+        } else {
+          value = undefined;
         }
-        break;
+      }
+      
+      // Fallback to English if not found
+      if (value === undefined && fallbackValue !== undefined && fallbackValue !== null) {
+        if (isNumeric && Array.isArray(fallbackValue)) {
+          value = fallbackValue[numKey];
+        } else if (!isNumeric && typeof fallbackValue === 'object' && k in fallbackValue) {
+          value = fallbackValue[k];
+          fallbackValue = fallbackValue[k];
+        } else {
+          return key; // Translation not found
+        }
+      } else if (value !== undefined && fallbackValue !== undefined && fallbackValue !== null) {
+        // Update fallback value for next iteration
+        if (isNumeric && Array.isArray(fallbackValue)) {
+          fallbackValue = fallbackValue[numKey];
+        } else if (!isNumeric && typeof fallbackValue === 'object' && k in fallbackValue) {
+          fallbackValue = fallbackValue[k];
+        }
+      }
+      
+      if (value === undefined) {
+        return key;
       }
     }
 
     // Replace placeholders
     if (typeof value === 'string') {
       Object.keys(params).forEach(param => {
-        value = value.replace(`{${param}}`, params[param]);
+        value = value.replace(new RegExp(`\\{${param}\\}`, 'g'), params[param]);
       });
     }
 
@@ -94,13 +123,55 @@ class I18n {
     // Update all elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
-      const translation = this.t(key);
+      
+      // Get params from data-i18n-params attribute if exists
+      let params = {};
+      const paramsAttr = element.getAttribute('data-i18n-params');
+      if (paramsAttr) {
+        try {
+          params = JSON.parse(paramsAttr);
+        } catch (e) {
+          console.warn('Invalid data-i18n-params:', paramsAttr);
+        }
+      }
+      
+      // Special handling for footer year
+      if (key === 'footer.text' && !params.year) {
+        params.year = new Date().getFullYear();
+      }
+      
+      const translation = this.t(key, params);
       
       // Handle HTML content
       if (element.hasAttribute('data-i18n-html')) {
         element.innerHTML = this.parseMarkdown(translation);
       } else {
-        element.textContent = translation;
+        // For footer, preserve the year span structure
+        if (key === 'footer.text' && element.querySelector('#year')) {
+          const year = new Date().getFullYear();
+          const yearEl = element.querySelector('#year');
+          if (yearEl) {
+            yearEl.textContent = year;
+            // Replace {year} in translation text but keep the span
+            let translatedText = translation.replace('{year}', year);
+            // Update text nodes around the year span
+            const textNodes = Array.from(element.childNodes).filter(n => n.nodeType === 3);
+            if (textNodes.length > 0) {
+              textNodes[0].textContent = translatedText.split(year.toString())[0];
+              if (textNodes.length > 1) {
+                textNodes[1].textContent = translatedText.split(year.toString())[1] || '';
+              }
+            }
+          }
+        } else {
+          // Replace {year} placeholder with actual year if it exists
+          let finalTranslation = translation;
+          if (finalTranslation.includes('{year}')) {
+            const year = new Date().getFullYear();
+            finalTranslation = finalTranslation.replace(/{year}/g, year);
+          }
+          element.textContent = finalTranslation;
+        }
       }
     });
 
@@ -126,7 +197,13 @@ class I18n {
 
   parseMarkdown(text) {
     // Simple markdown parser for bold (**text**)
-    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Replace {year} with actual year in HTML
+    if (text.includes('{year}')) {
+      const year = new Date().getFullYear();
+      text = text.replace('{year}', `<span id="year">${year}</span>`);
+    }
+    return text;
   }
 
   updateLanguageSelector() {
@@ -162,6 +239,7 @@ class I18n {
 let i18n;
 document.addEventListener('DOMContentLoaded', () => {
   i18n = new I18n();
+  window.i18n = i18n; // Export for global use
   
   // Language selector event
   const selector = document.getElementById('language-selector');
@@ -171,7 +249,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
-// Export for global use
-window.i18n = i18n;
-

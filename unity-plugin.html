@@ -92,6 +92,49 @@
       color: var(--primary);
     }
     
+    /* Language Selector */
+    .language-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: 1rem;
+    }
+    
+    .language-selector select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      color: var(--fg);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .language-selector select:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .language-selector select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    [dir="rtl"] {
+      direction: rtl;
+    }
+    
+    [dir="rtl"] .nav-menu {
+      flex-direction: row-reverse;
+    }
+    
+    [dir="rtl"] .language-selector {
+      margin-left: 0;
+      margin-right: 1rem;
+    }
+    
     /* Hero Section */
     .hero {
       margin-top: 80px;
@@ -422,26 +465,66 @@
     <div class="nav-container">
       <a href="/" class="logo">Muzaffer Karafil</a>
       <ul class="nav-menu">
-        <li><a href="/">Ana Sayfa</a></li>
-        <li><a href="/#projects">Projeler</a></li>
-        <li><a href="/#contact">İletişim</a></li>
+        <li><a href="/" data-i18n="nav.home">Home</a></li>
+        <li><a href="/#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="/#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
+      <div class="language-selector">
+        <select id="language-selector">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="ru">Русский</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+          <option value="ko">한국어</option>
+          <option value="ar">العربية</option>
+          <option value="nl">Nederlands</option>
+          <option value="sv">Svenska</option>
+          <option value="no">Norsk</option>
+          <option value="da">Dansk</option>
+          <option value="fi">Suomi</option>
+          <option value="pl">Polski</option>
+          <option value="cs">Čeština</option>
+          <option value="hu">Magyar</option>
+          <option value="ro">Română</option>
+          <option value="bg">Български</option>
+          <option value="el">Ελληνικά</option>
+          <option value="hr">Hrvatski</option>
+          <option value="sr">Српски</option>
+          <option value="sk">Slovenčina</option>
+          <option value="sl">Slovenščina</option>
+          <option value="uk">Українська</option>
+          <option value="et">Eesti</option>
+          <option value="lv">Latviešu</option>
+          <option value="lt">Lietuvių</option>
+          <option value="he">עברית</option>
+          <option value="th">ไทย</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="hi">हिन्दी</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="tl">Filipino</option>
+        </select>
+      </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>⚡ Unity Editor Tools</h1>
-      <p class="subtitle">Profesyonel Editor Extension'lar ve Plugin'ler</p>
-      <p class="description">
-        Unity Editor'ünüzü geliştirin ve workflow'unuzu optimize edin. Custom Inspector'lar, 
-        Editor Window'lar, asset pipeline entegrasyonu ve build automation sistemleri ile 
-        Unity geliştirme sürecinizi hızlandırın.
+      <h1 data-i18n="unityPlugin.hero.title">⚡ Unity Editor Tools</h1>
+      <p class="subtitle" data-i18n="unityPlugin.hero.subtitle">Professional Editor Extensions and Plugins</p>
+      <p class="description" data-i18n="unityPlugin.hero.description">
+        Enhance your Unity Editor and optimize your workflow. Custom Inspectors, Editor Windows, asset pipeline integration, and build automation systems to accelerate your Unity development process.
       </p>
       <div class="cta-buttons">
-        <a href="https://fab.com/s/2b2cdbcedcba" target="_blank" class="btn btn-fab">FAB Asset Store</a>
-        <a href="#features" class="btn btn-secondary">Özellikler</a>
+        <a href="https://fab.com/s/2b2cdbcedcba" target="_blank" class="btn btn-fab" data-i18n="unityPlugin.hero.ctaFAB">FAB Asset Store</a>
+        <a href="#features" class="btn btn-secondary" data-i18n="unityPlugin.hero.ctaFeatures">Features</a>
       </div>
     </div>
   </section>
@@ -449,63 +532,57 @@
   <!-- Features Section -->
   <section id="features" class="section">
     <div class="container">
-      <h2 class="section-title">Özellikler</h2>
-      <p class="section-subtitle">
-        Unity Editor'ünüzü güçlendiren profesyonel araçlar
+      <h2 class="section-title" data-i18n="unityPlugin.features.title">Features</h2>
+      <p class="section-subtitle" data-i18n="unityPlugin.features.subtitle">
+        Professional tools that enhance your Unity Editor
       </p>
       
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">🎨</div>
-          <h3>Custom Inspector'lar</h3>
-          <p>
-            Unity Inspector'ınızı özelleştirin ve geliştiriciler için daha iyi bir 
-            deneyim sunun. Custom property drawer'lar ve görsel düzenlemeler.
+          <h3 data-i18n="unityPlugin.features.inspectors.title">Custom Inspectors</h3>
+          <p data-i18n="unityPlugin.features.inspectors.description">
+            Customize your Unity Inspector and provide a better experience for developers. Custom property drawers and visual arrangements.
           </p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🪟</div>
-          <h3>Editor Window'lar</h3>
-          <p>
-            Unity Editor'e özel window'lar ekleyin. Workflow'unuzu optimize eden 
-            araçlar ve yardımcı pencereler.
+          <h3 data-i18n="unityPlugin.features.windows.title">Editor Windows</h3>
+          <p data-i18n="unityPlugin.features.windows.description">
+            Add custom windows to Unity Editor. Tools and helper windows that optimize your workflow.
           </p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">📦</div>
-          <h3>Asset Pipeline Entegrasyonu</h3>
-          <p>
-            Asset pipeline'ınıza entegre olun. Otomatik asset işleme, import 
-            ayarları ve pipeline optimizasyonları.
+          <h3 data-i18n="unityPlugin.features.pipeline.title">Asset Pipeline Integration</h3>
+          <p data-i18n="unityPlugin.features.pipeline.description">
+            Integrate into your asset pipeline. Automatic asset processing, import settings, and pipeline optimizations.
           </p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🔧</div>
-          <h3>ScriptableObject Sistemleri</h3>
-          <p>
-            ScriptableObject tabanlı veri yönetimi sistemleri. Konfigürasyon dosyaları 
-            ve veri yönetimi için güçlü çözümler.
+          <h3 data-i18n="unityPlugin.features.scriptableObjects.title">ScriptableObject Systems</h3>
+          <p data-i18n="unityPlugin.features.scriptableObjects.description">
+            ScriptableObject-based data management systems. Powerful solutions for configuration files and data management.
           </p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🚀</div>
-          <h3>Build Pipeline Automation</h3>
-          <p>
-            Build süreçlerinizi otomatikleştirin. Custom build script'leri ve 
-            automation araçları ile build sürecinizi optimize edin.
+          <h3 data-i18n="unityPlugin.features.build.title">Build Pipeline Automation</h3>
+          <p data-i18n="unityPlugin.features.build.description">
+            Automate your build processes. Optimize your build process with custom build scripts and automation tools.
           </p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">⚡</div>
-          <h3>Performance Optimization</h3>
-          <p>
-            Editor performansını optimize edin. Büyük projelerde bile sorunsuz çalışan 
-            ve editor performansını etkilemeyen araçlar.
+          <h3 data-i18n="unityPlugin.features.performance.title">Performance Optimization</h3>
+          <p data-i18n="unityPlugin.features.performance.description">
+            Optimize Editor performance. Tools that work smoothly even in large projects and do not affect editor performance.
           </p>
         </div>
       </div>
@@ -515,36 +592,36 @@
   <!-- Screenshots Section -->
   <section class="section screenshots">
     <div class="container">
-      <h2 class="section-title">Görseller</h2>
-      <p class="section-subtitle">
-        Unity Editor araçlarının nasıl çalıştığını görün
+      <h2 class="section-title" data-i18n="unityPlugin.screenshots.title">Screenshots</h2>
+      <p class="section-subtitle" data-i18n="unityPlugin.screenshots.subtitle">
+        See how Unity Editor tools work
       </p>
       
       <div class="screenshot-grid">
         <div class="screenshot-item">
-          <div class="screenshot-placeholder">
-            Custom Inspector Görünümü
+          <div class="screenshot-placeholder" data-i18n="unityPlugin.screenshots.inspectors">
+            Custom Inspector View
           </div>
-          <p>
-            Unity Inspector'ınızı özelleştirin ve geliştiriciler için daha iyi bir deneyim sunun.
+          <p data-i18n="unityPlugin.features.inspectors.description">
+            Customize your Unity Inspector and provide a better experience for developers.
           </p>
         </div>
 
         <div class="screenshot-item">
-          <div class="screenshot-placeholder">
-            Editor Window Araçları
+          <div class="screenshot-placeholder" data-i18n="unityPlugin.screenshots.windows">
+            Editor Window Tools
           </div>
-          <p>
-            Unity Editor'e özel window'lar ekleyin ve workflow'unuzu optimize edin.
+          <p data-i18n="unityPlugin.features.windows.description">
+            Add custom windows to Unity Editor and optimize your workflow.
           </p>
         </div>
 
         <div class="screenshot-item">
-          <div class="screenshot-placeholder">
-            Asset Pipeline Entegrasyonu
+          <div class="screenshot-placeholder" data-i18n="unityPlugin.screenshots.pipeline">
+            Asset Pipeline Integration
           </div>
-          <p>
-            Asset pipeline'ınıza entegre olun ve otomatik asset işleme yapın.
+          <p data-i18n="unityPlugin.features.pipeline.description">
+            Integrate into your asset pipeline and automatic asset processing.
           </p>
         </div>
       </div>
@@ -554,24 +631,23 @@
   <!-- Installation Section -->
   <section class="section installation">
     <div class="container">
-      <h2 class="section-title">Kurulum</h2>
-      <p class="section-subtitle">
-        Unity Editor araçlarını projenize ekleyin
+      <h2 class="section-title" data-i18n="unityPlugin.installation.title">Installation</h2>
+      <p class="section-subtitle" data-i18n="unityPlugin.installation.subtitle">
+        Add Unity Editor tools to your project
       </p>
       
       <div class="install-steps">
         <div class="install-step">
-          <h3>1. Plugin'i İndirin</h3>
-          <p>
-            Unity Editor plugin'ini FAB Asset Store'dan veya GitHub'dan indirin.
+          <h3 data-i18n="unityPlugin.installation.step1.title">1. Download the Plugin</h3>
+          <p data-i18n="unityPlugin.installation.step1.description">
+            Download the Unity Editor plugin from FAB Asset Store or GitHub.
           </p>
         </div>
 
         <div class="install-step">
-          <h3>2. Unity Package'i İçe Aktarın</h3>
-          <p>
-            Unity Editor'de Assets > Import Package > Custom Package menüsünden 
-            indirdiğiniz .unitypackage dosyasını seçin ve içe aktarın.
+          <h3 data-i18n="unityPlugin.installation.step2.title">2. Import Unity Package</h3>
+          <p data-i18n="unityPlugin.installation.step2.description">
+            In Unity Editor, select the downloaded .unitypackage file from Assets > Import Package > Custom Package menu and import it.
           </p>
           <div class="code-block">
             Assets/
@@ -581,19 +657,16 @@
         </div>
 
         <div class="install-step">
-          <h3>3. Editor Script'lerini Kontrol Edin</h3>
-          <p>
-            Editor script'lerinin Editor klasöründe olduğundan emin olun. 
-            Editor klasörü Unity tarafından otomatik olarak tanınır.
+          <h3 data-i18n="unityPlugin.installation.step3.title">3. Check Editor Scripts</h3>
+          <p data-i18n="unityPlugin.installation.step3.description">
+            Make sure Editor scripts are in the Editor folder. The Editor folder is automatically recognized by Unity.
           </p>
         </div>
 
         <div class="install-step">
-          <h3>4. Kullanmaya Başlayın</h3>
-          <p>
-            Unity Editor'ü yeniden başlatın ve Editor menüsünden yeni araçlara 
-            erişin. Custom Inspector'lar ve Editor Window'lar otomatik olarak 
-            aktif olacaktır.
+          <h3 data-i18n="unityPlugin.installation.step4.title">4. Start Using</h3>
+          <p data-i18n="unityPlugin.installation.step4.description">
+            Restart Unity Editor and access new tools from the Editor menu. Custom Inspectors and Editor Windows will be automatically active.
           </p>
         </div>
       </div>
@@ -603,20 +676,20 @@
   <!-- Community Section -->
   <section class="section community">
     <div class="container">
-      <h2 class="section-title">Topluluk</h2>
-      <p class="section-subtitle">
-        Unity Editor araçları topluluğuna katılın, sorularınızı sorun ve geri bildirim paylaşın
+      <h2 class="section-title" data-i18n="unityPlugin.community.title">Community</h2>
+      <p class="section-subtitle" data-i18n="unityPlugin.community.subtitle">
+        Join the Unity Editor tools community, ask questions, and share feedback
       </p>
       
       <div class="community-links">
         <a href="https://fab.com/s/2b2cdbcedcba" target="_blank" class="community-link fab">
-          <span>🛒</span> FAB Asset Store
+          <span>🛒</span> <span data-i18n="unityPlugin.community.fab">FAB Asset Store</span>
         </a>
         <a href="https://github.com/MeetlyTR" target="_blank" class="community-link">
-          <span>💻</span> GitHub
+          <span>💻</span> <span data-i18n="unityPlugin.community.github">GitHub</span>
         </a>
         <a href="/#contact" class="community-link">
-          <span>✉️</span> İletişim
+          <span>✉️</span> <span data-i18n="unityPlugin.community.contact">Contact</span>
         </a>
       </div>
     </div>
@@ -625,10 +698,11 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>© <span id="year"></span> Muzaffer Karafil · Unity Editor Tools</p>
+      <p data-i18n="footer.text" data-i18n-html="true">© <span id="year"></span> Muzaffer Karafil · Unreal Engine & Unity Plugin Developer</p>
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     
