@@ -21,6 +21,7 @@
       "unreal": {
         "title": "Unreal Engine Plugin",
         "description": "C++ and Blueprint-based plugin development for Unreal Engine. Editor tools, runtime systems, and performance optimizations.",
+        "viewDetails": "View Details →",
         "features": [
           "C++ Module Development",
           "Blueprint Function Library",
@@ -33,6 +34,7 @@
       "unity": {
         "title": "Unity Plugin",
         "description": "C#-based Editor extensions and runtime plugins for Unity. Custom Inspectors, Editor Windows, and workflow improvements.",
+        "viewDetails": "View Details →",
         "features": [
           "C# Editor Extensions",
           "Custom Property Drawers",
