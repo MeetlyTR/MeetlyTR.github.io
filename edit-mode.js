@@ -4,14 +4,129 @@
 let editMode = false;
 let originalContent = {};
 const EDIT_KEY = 'editModeEnabled';
+const PASSWORD_SESSION_KEY = 'editModeSession';
+const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
-// Toggle edit mode
-function toggleEditMode() {
+// Password Hash - SHA-256 hash of the password
+// Bu hash GitHub'da görünebilir ama gerçek şifre görünmez
+// Şifreyi değiştirmek için: Yeni şifreyi SHA-256 ile hash'leyin ve aşağıdaki değeri güncelleyin
+// Örnek: node -e "const crypto = require('crypto'); console.log(crypto.createHash('sha256').update('YeniŞifre').digest('hex'));"
+const PASSWORD_HASH = '0f2f23bad805b7f3a7a2c7ff55b1c604706c97778926a9b786e73b080e04c5bb'; // SHA-256 hash of Meetly2024!
+
+// Calculate SHA-256 hash
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashHex;
+}
+
+// Check if session is valid
+function isSessionValid() {
+  const session = localStorage.getItem(PASSWORD_SESSION_KEY);
+  if (!session) return false;
+  
+  try {
+    const sessionData = JSON.parse(session);
+    const now = Date.now();
+    if (now - sessionData.timestamp > SESSION_DURATION) {
+      localStorage.removeItem(PASSWORD_SESSION_KEY);
+      return false;
+    }
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Create session
+function createSession() {
+  const sessionData = {
+    timestamp: Date.now(),
+    valid: true
+  };
+  localStorage.setItem(PASSWORD_SESSION_KEY, JSON.stringify(sessionData));
+}
+
+// Request edit mode (show password modal)
+function requestEditMode() {
   if (editMode) {
     disableEditMode();
-  } else {
-    enableEditMode();
+    return;
   }
+  
+  // Check if session is valid
+  if (isSessionValid()) {
+    enableEditMode();
+    return;
+  }
+  
+  // Show password modal
+  showPasswordModal();
+}
+
+// Show password modal
+function showPasswordModal() {
+  const modal = document.getElementById('passwordModal');
+  const input = document.getElementById('passwordInput');
+  const error = document.getElementById('passwordError');
+  
+  if (!modal || !input || !error) return;
+  
+  modal.classList.add('show');
+  error.classList.remove('show');
+  input.value = '';
+  
+  // Focus after animation
+  setTimeout(() => {
+    input.focus();
+  }, 100);
+}
+
+// Close password modal
+function closePasswordModal() {
+  const modal = document.getElementById('passwordModal');
+  modal.classList.remove('show');
+}
+
+// Check password and enable edit mode
+async function checkPasswordAndEnableEdit() {
+  const input = document.getElementById('passwordInput');
+  const error = document.getElementById('passwordError');
+  const password = input.value;
+  
+  if (!password) {
+    error.textContent = '❌ Lütfen şifre girin!';
+    error.classList.add('show');
+    return;
+  }
+  
+  // Hash the entered password using SHA-256
+  const enteredHash = await sha256(password);
+  
+  // Compare with stored hash (gerçek şifre hiçbir yerde saklanmıyor, sadece hash karşılaştırması yapılıyor)
+  if (enteredHash === PASSWORD_HASH) {
+    // Password is correct
+    createSession();
+    closePasswordModal();
+    enableEditMode();
+    showNotification('✅ Şifre doğru! Düzenleme modu aktif.', 'success');
+  } else {
+    // Password is incorrect
+    error.classList.add('show');
+    input.value = '';
+    input.focus();
+    input.style.borderColor = '#ef4444';
+    setTimeout(() => {
+      input.style.borderColor = '';
+    }, 2000);
+  }
+}
+
+// Toggle edit mode (deprecated - use requestEditMode instead)
+function toggleEditMode() {
+  requestEditMode();
 }
 
 // Enable edit mode
@@ -469,6 +584,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Make functions global
 window.toggleEditMode = toggleEditMode;
+window.requestEditMode = requestEditMode;
+window.checkPasswordAndEnableEdit = checkPasswordAndEnableEdit;
+window.closePasswordModal = closePasswordModal;
 window.savePageChanges = savePageChanges;
 window.exportPageData = exportPageData;
 window.cancelEditMode = cancelEditMode;

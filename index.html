@@ -375,6 +375,122 @@
       }
     }
     
+    /* Password Modal */
+    .password-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .password-modal.show {
+      display: flex;
+    }
+    
+    .password-modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      width: 90%;
+      animation: modalSlideIn 0.3s ease-out;
+    }
+    
+    @keyframes modalSlideIn {
+      from {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    .password-modal h3 {
+      margin: 0 0 1rem 0;
+      color: #333;
+      font-size: 1.5rem;
+    }
+    
+    .password-modal p {
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .password-modal input {
+      width: 100%;
+      padding: 0.875rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s;
+    }
+    
+    .password-modal input:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .password-modal-buttons {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: flex-end;
+    }
+    
+    .password-modal button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .password-modal button.submit {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+    }
+    
+    .password-modal button.submit:hover {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .password-modal button.cancel {
+      background: #e5e7eb;
+      color: #374151;
+    }
+    
+    .password-modal button.cancel:hover {
+      background: #d1d5db;
+    }
+    
+    .password-error {
+      color: #ef4444;
+      font-size: 0.875rem;
+      margin-top: -0.75rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    
+    .password-error.show {
+      display: block;
+    }
+    
     /* Hero Section */
     .hero {
       margin-top: 80px;
@@ -1201,8 +1317,22 @@
     </div>
     </footer>
 
+  <!-- Password Modal -->
+  <div class="password-modal" id="passwordModal">
+    <div class="password-modal-content">
+      <h3>🔒 Düzenleme Modu</h3>
+      <p>Sayfayı düzenlemek için şifre girin:</p>
+      <input type="password" id="passwordInput" placeholder="Şifre" autocomplete="off">
+      <div class="password-error" id="passwordError">❌ Yanlış şifre! Lütfen tekrar deneyin.</div>
+      <div class="password-modal-buttons">
+        <button class="cancel" onclick="closePasswordModal()">İptal</button>
+        <button class="submit" onclick="checkPasswordAndEnableEdit()">Giriş Yap</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Edit Button - Floating -->
-  <button class="edit-button" id="editButton" onclick="toggleEditMode()" title="Sayfayı Düzenle">
+  <button class="edit-button" id="editButton" onclick="requestEditMode()" title="Sayfayı Düzenle">
     ✏️
   </button>
 
