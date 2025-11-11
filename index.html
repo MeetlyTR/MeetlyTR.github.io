@@ -140,6 +140,49 @@
       color: var(--fg);
     }
     
+    /* Language Selector */
+    .language-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: 1rem;
+    }
+    
+    .language-selector select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      color: var(--fg);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .language-selector select:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .language-selector select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    [dir="rtl"] {
+      direction: rtl;
+    }
+    
+    [dir="rtl"] .nav-menu {
+      flex-direction: row-reverse;
+    }
+    
+    [dir="rtl"] .language-selector {
+      margin-left: 0;
+      margin-right: 1rem;
+    }
+    
     /* Hero Section */
     .hero {
       margin-top: 80px;
@@ -620,16 +663,58 @@
     <div class="nav-container">
       <a href="/" class="logo">Muzaffer Karafil</a>
       <ul class="nav-menu">
-        <li><a href="#home">Ana Sayfa</a></li>
-        <li><a href="#services">Servisler</a></li>
-        <li><a href="#projects">Projeler</a></li>
-        <li><a href="#about">Hakkımda</a></li>
-        <li><a href="#experience">Deneyim</a></li>
-        <li><a href="#contact">İletişim</a></li>
+        <li><a href="#home" data-i18n="nav.home">Ana Sayfa</a></li>
+        <li><a href="#services" data-i18n="nav.services">Servisler</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Projeler</a></li>
+        <li><a href="#about" data-i18n="nav.about">Hakkımda</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Deneyim</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
       </ul>
+      <div class="language-selector">
+        <select id="language-selector">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="ru">Русский</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+          <option value="ko">한국어</option>
+          <option value="ar">العربية</option>
+          <option value="nl">Nederlands</option>
+          <option value="sv">Svenska</option>
+          <option value="no">Norsk</option>
+          <option value="da">Dansk</option>
+          <option value="fi">Suomi</option>
+          <option value="pl">Polski</option>
+          <option value="cs">Čeština</option>
+          <option value="hu">Magyar</option>
+          <option value="ro">Română</option>
+          <option value="bg">Български</option>
+          <option value="el">Ελληνικά</option>
+          <option value="hr">Hrvatski</option>
+          <option value="sr">Српски</option>
+          <option value="sk">Slovenčina</option>
+          <option value="sl">Slovenščina</option>
+          <option value="uk">Українська</option>
+          <option value="et">Eesti</option>
+          <option value="lv">Latviešu</option>
+          <option value="lt">Lietuvių</option>
+          <option value="he">עברית</option>
+          <option value="th">ไทย</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="hi">हिन्दी</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="tl">Filipino</option>
+        </select>
+      </div>
       <button class="mobile-menu-toggle">☰</button>
-    </div>
-  </nav>
+      </div>
+    </nav>
 
   <!-- Hero Section -->
   <section id="home" class="hero">
@@ -720,15 +805,15 @@
           <img src="profile.jpg" alt="Muzaffer Karafil">
         </div>
         <div class="about-text">
-          <p>
-            Merhaba! Ben <strong>Muzaffer Karafil</strong>. Üretim disiplininden gelen
+        <p>
+          Merhaba! Ben <strong>Muzaffer Karafil</strong>. Üretim disiplininden gelen
             düzen ve hassasiyeti teknoloji merakıyla birleştiriyorum.
           </p>
           <p>
             Togg'da <strong>Paint Maintenance</strong> ekibinde görev alıyor; aynı zamanda
-            <strong>Meetly</strong> projesinin geliştiricisi olarak mobil ve yapay zekâ
-            odaklı ürünler üzerinde çalışıyorum.
-          </p>
+          <strong>Meetly</strong> projesinin geliştiricisi olarak mobil ve yapay zekâ
+          odaklı ürünler üzerinde çalışıyorum.
+        </p>
           <p>
             <strong>Unreal Engine</strong> ve <strong>Unity</strong> için profesyonel plugin 
             geliştirme konusunda uzmanlaşıyorum. Oyun motorlarına özel çözümler üretmek, 
@@ -766,19 +851,22 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" onclick="window.location.href='blueprint-outline.html'" style="cursor: pointer;">
           <div class="project-image">⚙️</div>
           <div class="project-content">
-            <h3>Unreal Engine Plugins</h3>
+            <h3>BlueprintOutline - Unreal Engine Plugin</h3>
             <p>
-              Unreal Engine için C++ ve Blueprint tabanlı özel plugin'ler. Editor tool'ları, 
-              runtime sistemleri, asset management ve performance optimization çözümleri. 
+              Unreal Engine için C++ ve Blueprint tabanlı Blueprint outline görselleştirme plugin'i. 
+              Editor tool'ları, runtime sistemleri ve performance optimization çözümleri. 
               Modüler mimari ve kapsamlı dokümantasyon.
             </p>
+            <div style="margin-top: 1rem;">
+              <a href="blueprint-outline.html" style="color: var(--primary); font-weight: 600;">Detayları Gör →</a>
+            </div>
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" onclick="window.location.href='unity-plugin.html'" style="cursor: pointer;">
           <div class="project-image">🔧</div>
           <div class="project-content">
             <h3>Unity Editor Tools</h3>
@@ -787,6 +875,9 @@
               Custom Inspector'lar, Editor Window'lar, asset pipeline entegrasyonu ve 
               build automation sistemleri.
             </p>
+            <div style="margin-top: 1rem;">
+              <a href="unity-plugin.html" style="color: var(--primary); font-weight: 600;">Detayları Gör →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -920,15 +1011,15 @@
           </a>
         </div>
       </div>
-    </div>
-  </section>
+        </div>
+      </section>
 
   <!-- Footer -->
-  <footer class="footer">
+    <footer class="footer">
     <div class="container">
       <p>© <span id="year"></span> Muzaffer Karafil · Unreal Engine & Unity Plugin Developer</p>
     </div>
-  </footer>
+    </footer>
 
   <script>
     // Year

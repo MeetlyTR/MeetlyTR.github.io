@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Unity Plugin - Editor Tools & Extensions</title>
+  <meta name="description" content="Unity için profesyonel Editor extension'lar ve runtime plugin'ler. Custom Inspector'lar, Editor Window'lar ve workflow iyileştirme araçları.">
+  <link rel="canonical" href="https://meetlytr.github.io/unity-plugin.html"/>
+
+  <style>
+    :root {
+      --primary: #000000;
+      --primary-dark: #1a1a1a;
+      --primary-light: #333333;
+      --secondary: #6C5CE7;
+      --accent: #A29BFE;
+      --fg: #1f2937;
+      --fg-light: #6b7280;
+      --bg: #ffffff;
+      --bg-light: #f9fafb;
+      --bg-dark: #f3f4f6;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--fg);
+      background: var(--bg);
+      font-size: 16px;
+    }
+    
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: var(--shadow);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-menu a {
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-menu a:hover {
+      color: var(--primary);
+    }
+    
+    /* Hero Section */
+    .hero {
+      margin-top: 80px;
+      padding: 6rem 2rem;
+      background: linear-gradient(135deg, #000000 0%, #333333 100%);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .hero .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      font-weight: 400;
+    }
+    
+    .hero .description {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+    
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border-color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary);
+    }
+    
+    .btn-fab {
+      background: #6C5CE7;
+      color: white;
+    }
+    
+    .btn-fab:hover {
+      background: #5f4fd6;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Section */
+    .section {
+      padding: 5rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: var(--fg-light);
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .feature-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+    
+    .feature-card p {
+      color: var(--fg-light);
+      line-height: 1.8;
+    }
+    
+    /* Screenshots */
+    .screenshots {
+      background: var(--bg-light);
+    }
+    
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .screenshot-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    .screenshot-placeholder {
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+    
+    .screenshot-item p {
+      padding: 1.5rem;
+      color: var(--fg-light);
+    }
+    
+    /* Installation */
+    .installation {
+      background: var(--bg-light);
+    }
+    
+    .install-steps {
+      max-width: 800px;
+      margin: 3rem auto;
+    }
+    
+    .install-step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .install-step h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .install-step p {
+      color: var(--fg-light);
+      line-height: 1.8;
+    }
+    
+    .code-block {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: var(--fg);
+      overflow-x: auto;
+    }
+    
+    /* Community */
+    .community {
+      text-align: center;
+    }
+    
+    .community-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    
+    .community-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--fg);
+      font-weight: 500;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+    }
+    
+    .community-link:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .community-link.fab {
+      border-color: #6C5CE7;
+      color: #6C5CE7;
+    }
+    
+    .community-link.fab:hover {
+      background: #6C5CE7;
+      color: white;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--fg);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
+    
+    .footer p {
+      opacity: 0.8;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero .subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .features-grid,
+      .screenshot-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo">Muzaffer Karafil</a>
+      <ul class="nav-menu">
+        <li><a href="/">Ana Sayfa</a></li>
+        <li><a href="/#projects">Projeler</a></li>
+        <li><a href="/#contact">İletişim</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>⚡ Unity Editor Tools</h1>
+      <p class="subtitle">Profesyonel Editor Extension'lar ve Plugin'ler</p>
+      <p class="description">
+        Unity Editor'ünüzü geliştirin ve workflow'unuzu optimize edin. Custom Inspector'lar, 
+        Editor Window'lar, asset pipeline entegrasyonu ve build automation sistemleri ile 
+        Unity geliştirme sürecinizi hızlandırın.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://fab.com/s/2b2cdbcedcba" target="_blank" class="btn btn-fab">FAB Asset Store</a>
+        <a href="#features" class="btn btn-secondary">Özellikler</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2 class="section-title">Özellikler</h2>
+      <p class="section-subtitle">
+        Unity Editor'ünüzü güçlendiren profesyonel araçlar
+      </p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Custom Inspector'lar</h3>
+          <p>
+            Unity Inspector'ınızı özelleştirin ve geliştiriciler için daha iyi bir 
+            deneyim sunun. Custom property drawer'lar ve görsel düzenlemeler.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🪟</div>
+          <h3>Editor Window'lar</h3>
+          <p>
+            Unity Editor'e özel window'lar ekleyin. Workflow'unuzu optimize eden 
+            araçlar ve yardımcı pencereler.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>Asset Pipeline Entegrasyonu</h3>
+          <p>
+            Asset pipeline'ınıza entegre olun. Otomatik asset işleme, import 
+            ayarları ve pipeline optimizasyonları.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3>ScriptableObject Sistemleri</h3>
+          <p>
+            ScriptableObject tabanlı veri yönetimi sistemleri. Konfigürasyon dosyaları 
+            ve veri yönetimi için güçlü çözümler.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>Build Pipeline Automation</h3>
+          <p>
+            Build süreçlerinizi otomatikleştirin. Custom build script'leri ve 
+            automation araçları ile build sürecinizi optimize edin.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Performance Optimization</h3>
+          <p>
+            Editor performansını optimize edin. Büyük projelerde bile sorunsuz çalışan 
+            ve editor performansını etkilemeyen araçlar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots Section -->
+  <section class="section screenshots">
+    <div class="container">
+      <h2 class="section-title">Görseller</h2>
+      <p class="section-subtitle">
+        Unity Editor araçlarının nasıl çalıştığını görün
+      </p>
+      
+      <div class="screenshot-grid">
+        <div class="screenshot-item">
+          <div class="screenshot-placeholder">
+            Custom Inspector Görünümü
+          </div>
+          <p>
+            Unity Inspector'ınızı özelleştirin ve geliştiriciler için daha iyi bir deneyim sunun.
+          </p>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-placeholder">
+            Editor Window Araçları
+          </div>
+          <p>
+            Unity Editor'e özel window'lar ekleyin ve workflow'unuzu optimize edin.
+          </p>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-placeholder">
+            Asset Pipeline Entegrasyonu
+          </div>
+          <p>
+            Asset pipeline'ınıza entegre olun ve otomatik asset işleme yapın.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Installation Section -->
+  <section class="section installation">
+    <div class="container">
+      <h2 class="section-title">Kurulum</h2>
+      <p class="section-subtitle">
+        Unity Editor araçlarını projenize ekleyin
+      </p>
+      
+      <div class="install-steps">
+        <div class="install-step">
+          <h3>1. Plugin'i İndirin</h3>
+          <p>
+            Unity Editor plugin'ini FAB Asset Store'dan veya GitHub'dan indirin.
+          </p>
+        </div>
+
+        <div class="install-step">
+          <h3>2. Unity Package'i İçe Aktarın</h3>
+          <p>
+            Unity Editor'de Assets > Import Package > Custom Package menüsünden 
+            indirdiğiniz .unitypackage dosyasını seçin ve içe aktarın.
+          </p>
+          <div class="code-block">
+            Assets/
+            └── Plugins/
+                └── EditorTools/
+          </div>
+        </div>
+
+        <div class="install-step">
+          <h3>3. Editor Script'lerini Kontrol Edin</h3>
+          <p>
+            Editor script'lerinin Editor klasöründe olduğundan emin olun. 
+            Editor klasörü Unity tarafından otomatik olarak tanınır.
+          </p>
+        </div>
+
+        <div class="install-step">
+          <h3>4. Kullanmaya Başlayın</h3>
+          <p>
+            Unity Editor'ü yeniden başlatın ve Editor menüsünden yeni araçlara 
+            erişin. Custom Inspector'lar ve Editor Window'lar otomatik olarak 
+            aktif olacaktır.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Section -->
+  <section class="section community">
+    <div class="container">
+      <h2 class="section-title">Topluluk</h2>
+      <p class="section-subtitle">
+        Unity Editor araçları topluluğuna katılın, sorularınızı sorun ve geri bildirim paylaşın
+      </p>
+      
+      <div class="community-links">
+        <a href="https://fab.com/s/2b2cdbcedcba" target="_blank" class="community-link fab">
+          <span>🛒</span> FAB Asset Store
+        </a>
+        <a href="https://github.com/MeetlyTR" target="_blank" class="community-link">
+          <span>💻</span> GitHub
+        </a>
+        <a href="/#contact" class="community-link">
+          <span>✉️</span> İletişim
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Muzaffer Karafil · Unity Editor Tools</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
