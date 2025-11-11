@@ -157,29 +157,69 @@
       "features": {
         "title": "Features",
         "subtitle": "Better organize and visualize your Blueprints with BlueprintOutline",
-        "visualization": {
-          "title": "Blueprint Outline Visualization",
-          "description": "Visualize and better organize your Blueprint outlines. Understand complex Blueprint structures more easily."
+        "treeNavigation": {
+          "title": "Tree-Based Navigation",
+          "description": "Visual tree view showing Event → Branch/Sequence → Nodes execution chains. Navigate complex Blueprint structures with ease."
         },
-        "customizable": {
-          "title": "Customizable Appearance",
-          "description": "Customize the outline appearance to your needs. Change colors, line thickness, and other visual settings."
+        "jumpToNode": {
+          "title": "Jump to Node",
+          "description": "Double-click any item to zoom and focus on the node in the Blueprint editor. Instantly navigate to any part of your Blueprint."
+        },
+        "smartFlowLanes": {
+          "title": "Smart Flow Lanes",
+          "description": "Lane overlay that highlights True/False, Sequence, and Switch paths with subtle bands and lane labels for better flow visualization."
+        },
+        "searchFilters": {
+          "title": "Advanced Search & Filters",
+          "description": "Real-time search with multiple filter options: Exec Only, Branch/Sequence, Latent nodes, Function Calls, Variable Get/Set, Custom Events, Pure Nodes, Event Dispatchers, Switch, MultiGate, Timeline, State Machine, and more."
+        },
+        "macroExpansion": {
+          "title": "Macro/Collapsed Expansion",
+          "description": "Automatically expands Macros and Collapsed Graphs in the tree. See the full execution flow without manual expansion."
+        },
+        "dataFlow": {
+          "title": "Data Flow Support",
+          "description": "Shows important data nodes (Break Hit Result, Variable Get/Set, Cast) connected to execution flow for better understanding."
+        },
+        "enhancedInput": {
+          "title": "Enhanced Input Support",
+          "description": "Enhanced Input Action nodes are properly detected and displayed with [EnhancedInput] meta labels."
+        },
+        "nodeManagement": {
+          "title": "Node Management",
+          "description": "Rename Custom Event nodes, add/edit comments, and bookmark important nodes for quick access across Blueprints."
+        },
+        "keyboardShortcuts": {
+          "title": "Keyboard Shortcuts",
+          "description": "Ctrl+F (Focus search), Ctrl+R (Refresh), Ctrl+E/Ctrl+Shift+E (Expand/Collapse all), Ctrl+A (Select all), Ctrl+C (Copy tree), Esc (Clear search)."
         },
         "performance": {
           "title": "Performance Optimization",
-          "description": "Runs with low overhead and does not affect your Blueprint performance. Works smoothly even in large projects."
+          "description": "Async build system with caching for responsive UI on complex Blueprints (1000+ nodes). Fast on large graphs with per-Blueprint caching."
         },
-        "integration": {
-          "title": "Editor Integration",
-          "description": "Fully integrated into Unreal Engine Editor. Directly usable in Blueprint Editor and easy installation."
+        "autoRefresh": {
+          "title": "Auto-Refresh & Editor Sync",
+          "description": "Automatically refreshes when Blueprints are opened or recompiled. Selecting a node in the graph highlights it in the outline automatically."
         },
-        "modular": {
-          "title": "Modular Structure",
-          "description": "Easily extensible with modular architecture. Customizable and extensible according to your needs."
+        "colorCoded": {
+          "title": "Color-Coded Nodes",
+          "description": "Each node type has a unique color for easy identification. Switch case labels are color-coded in the outline."
         },
-        "crossPlatform": {
-          "title": "Cross-Platform Support",
-          "description": "Works on Windows, Mac, and Linux. Supported on all Unreal Engine platforms."
+        "multiEditor": {
+          "title": "Multi-Editor Support",
+          "description": "Each Blueprint Editor window gets its own panel. Panel automatically appears in every Blueprint Editor (embedded)."
+        },
+        "statePreservation": {
+          "title": "State Preservation",
+          "description": "Tree expansion state is preserved during auto-refresh. Bookmarks and comments are saved across sessions."
+        },
+        "localization": {
+          "title": "Full Localization",
+          "description": "English and Turkish support. Full localization for all UI elements and messages."
+        },
+        "editorOnly": {
+          "title": "Editor-Only Operation",
+          "description": "No runtime load. Works only in the editor, ensuring zero performance impact on packaged builds."
         }
       },
       "screenshots": {
@@ -447,29 +487,69 @@
       "features": {
         "title": "Özellikler",
         "subtitle": "BlueprintOutline ile Blueprint'lerinizi daha iyi organize edin ve görselleştirin",
-        "visualization": {
-          "title": "Blueprint Outline Görselleştirme",
-          "description": "Blueprint'lerinizin outline'ını görselleştirin ve daha iyi organize edin. Kompleks Blueprint yapılarını daha kolay anlayın."
+        "treeNavigation": {
+          "title": "Ağaç Tabanlı Navigasyon",
+          "description": "Event → Branch/Sequence → Nodes execution chain'lerini gösteren görsel ağaç görünümü. Kompleks Blueprint yapılarını kolayca gezinebilirsiniz."
         },
-        "customizable": {
-          "title": "Özelleştirilebilir Görünüm",
-          "description": "Outline görünümünü ihtiyaçlarınıza göre özelleştirin. Renkler, çizgi kalınlığı ve diğer görsel ayarları değiştirebilirsiniz."
+        "jumpToNode": {
+          "title": "Node'a Atla",
+          "description": "Herhangi bir öğeye çift tıklayarak Blueprint editöründe node'a zoom yapın ve odaklanın. Blueprint'inizin herhangi bir bölümüne anında gidin."
+        },
+        "smartFlowLanes": {
+          "title": "Akıllı Akış Şeritleri",
+          "description": "True/False, Sequence ve Switch yollarını pastel bantlar ve şerit etiketleriyle vurgulayan şerit overlay'i. Daha iyi akış görselleştirmesi için."
+        },
+        "searchFilters": {
+          "title": "Gelişmiş Arama & Filtreler",
+          "description": "Gerçek zamanlı arama ve çoklu filtre seçenekleri: Exec Only, Branch/Sequence, Latent node'lar, Function Call'lar, Variable Get/Set, Custom Event'ler, Pure Node'lar, Event Dispatcher'lar, Switch, MultiGate, Timeline, State Machine ve daha fazlası."
+        },
+        "macroExpansion": {
+          "title": "Macro/Collapsed Genişletme",
+          "description": "Ağaçta Macro'ları ve Collapsed Graph'ları otomatik olarak genişletir. Manuel genişletme olmadan tam execution flow'u görün."
+        },
+        "dataFlow": {
+          "title": "Data Flow Desteği",
+          "description": "Execution flow'a bağlı önemli data node'larını (Break Hit Result, Variable Get/Set, Cast) gösterir. Daha iyi anlama için."
+        },
+        "enhancedInput": {
+          "title": "Enhanced Input Desteği",
+          "description": "Enhanced Input Action node'ları doğru şekilde algılanır ve [EnhancedInput] meta etiketleriyle gösterilir."
+        },
+        "nodeManagement": {
+          "title": "Node Yönetimi",
+          "description": "Custom Event node'larını yeniden adlandırın, yorum ekleyin/düzenleyin ve önemli node'ları bookmark'layarak Blueprint'ler arasında hızlı erişim sağlayın."
+        },
+        "keyboardShortcuts": {
+          "title": "Klavye Kısayolları",
+          "description": "Ctrl+F (Arama odakla), Ctrl+R (Yenile), Ctrl+E/Ctrl+Shift+E (Tümünü genişlet/daralt), Ctrl+A (Tümünü seç), Ctrl+C (Ağacı kopyala), Esc (Aramayı temizle)."
         },
         "performance": {
           "title": "Performans Optimizasyonu",
-          "description": "Düşük overhead ile çalışır ve Blueprint performansınızı etkilemez. Büyük projelerde bile sorunsuz çalışır."
+          "description": "Kompleks Blueprint'lerde (1000+ node) responsive UI için cache'li async build sistemi. Her Blueprint için ayrı cache ile büyük graph'larda hızlı."
         },
-        "integration": {
-          "title": "Editor Entegrasyonu",
-          "description": "Unreal Engine Editor'üne tam entegre. Blueprint Editor içinde doğrudan kullanılabilir ve kolay kurulum."
+        "autoRefresh": {
+          "title": "Otomatik Yenileme & Editor Senkronu",
+          "description": "Blueprint'ler açıldığında veya yeniden derlendiğinde otomatik olarak yenilenir. Graph'ta bir node seçtiğinizde outline'da otomatik olarak vurgulanır."
         },
-        "modular": {
-          "title": "Modüler Yapı",
-          "description": "Modüler mimari ile kolayca genişletilebilir. İhtiyaçlarınıza göre özelleştirilebilir ve genişletilebilir."
+        "colorCoded": {
+          "title": "Renk Kodlu Node'lar",
+          "description": "Her node tipi kolay tanımlama için benzersiz bir renge sahiptir. Switch case etiketleri outline'da renk kodludur."
         },
-        "crossPlatform": {
-          "title": "Cross-Platform Desteği",
-          "description": "Windows, Mac ve Linux'ta çalışır. Tüm Unreal Engine platformlarında desteklenir."
+        "multiEditor": {
+          "title": "Çoklu Editor Desteği",
+          "description": "Her Blueprint Editor penceresi kendi panelini alır. Panel her Blueprint Editor'de otomatik olarak görünür (gömülü)."
+        },
+        "statePreservation": {
+          "title": "Durum Koruma",
+          "description": "Ağaç genişletme durumu otomatik yenileme sırasında korunur. Bookmark'lar ve yorumlar oturumlar arasında kaydedilir."
+        },
+        "localization": {
+          "title": "Tam Lokalizasyon",
+          "description": "İngilizce ve Türkçe desteği. Tüm UI elementleri ve mesajlar için tam lokalizasyon."
+        },
+        "editorOnly": {
+          "title": "Sadece Editor'de Çalışır",
+          "description": "Runtime yükü yok. Sadece editor'de çalışır, paketlenmiş build'lerde sıfır performans etkisi sağlar."
         }
       },
       "screenshots": {

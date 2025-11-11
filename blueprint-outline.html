@@ -540,17 +540,73 @@
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">📊</div>
-          <h3 data-i18n="blueprintOutline.features.visualization.title">Blueprint Outline Visualization</h3>
-          <p data-i18n="blueprintOutline.features.visualization.description">
-            Visualize and better organize your Blueprint outlines. Understand complex Blueprint structures more easily.
+          <h3 data-i18n="blueprintOutline.features.treeNavigation.title">Tree-Based Navigation</h3>
+          <p data-i18n="blueprintOutline.features.treeNavigation.description">
+            Visual tree view showing Event → Branch/Sequence → Nodes execution chains. Navigate complex Blueprint structures with ease.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3 data-i18n="blueprintOutline.features.jumpToNode.title">Jump to Node</h3>
+          <p data-i18n="blueprintOutline.features.jumpToNode.description">
+            Double-click any item to zoom and focus on the node in the Blueprint editor. Instantly navigate to any part of your Blueprint.
           </p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🎨</div>
-          <h3 data-i18n="blueprintOutline.features.customizable.title">Customizable Appearance</h3>
-          <p data-i18n="blueprintOutline.features.customizable.description">
-            Customize the outline appearance to your needs. Change colors, line thickness, and other visual settings.
+          <h3 data-i18n="blueprintOutline.features.smartFlowLanes.title">Smart Flow Lanes</h3>
+          <p data-i18n="blueprintOutline.features.smartFlowLanes.description">
+            Lane overlay that highlights True/False, Sequence, and Switch paths with subtle bands and lane labels for better flow visualization.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3 data-i18n="blueprintOutline.features.searchFilters.title">Advanced Search & Filters</h3>
+          <p data-i18n="blueprintOutline.features.searchFilters.description">
+            Real-time search with multiple filter options: Exec Only, Branch/Sequence, Latent nodes, Function Calls, Variable Get/Set, Custom Events, Pure Nodes, Event Dispatchers, Switch, MultiGate, Timeline, State Machine, and more.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3 data-i18n="blueprintOutline.features.macroExpansion.title">Macro/Collapsed Expansion</h3>
+          <p data-i18n="blueprintOutline.features.macroExpansion.description">
+            Automatically expands Macros and Collapsed Graphs in the tree. See the full execution flow without manual expansion.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3 data-i18n="blueprintOutline.features.dataFlow.title">Data Flow Support</h3>
+          <p data-i18n="blueprintOutline.features.dataFlow.description">
+            Shows important data nodes (Break Hit Result, Variable Get/Set, Cast) connected to execution flow for better understanding.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⌨️</div>
+          <h3 data-i18n="blueprintOutline.features.enhancedInput.title">Enhanced Input Support</h3>
+          <p data-i18n="blueprintOutline.features.enhancedInput.description">
+            Enhanced Input Action nodes are properly detected and displayed with [EnhancedInput] meta labels.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✏️</div>
+          <h3 data-i18n="blueprintOutline.features.nodeManagement.title">Node Management</h3>
+          <p data-i18n="blueprintOutline.features.nodeManagement.description">
+            Rename Custom Event nodes, add/edit comments, and bookmark important nodes for quick access across Blueprints.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⌨️</div>
+          <h3 data-i18n="blueprintOutline.features.keyboardShortcuts.title">Keyboard Shortcuts</h3>
+          <p data-i18n="blueprintOutline.features.keyboardShortcuts.description">
+            Ctrl+F (Focus search), Ctrl+R (Refresh), Ctrl+E/Ctrl+Shift+E (Expand/Collapse all), Ctrl+A (Select all), Ctrl+C (Copy tree), Esc (Clear search).
           </p>
         </div>
 
@@ -558,31 +614,55 @@
           <div class="feature-icon">⚡</div>
           <h3 data-i18n="blueprintOutline.features.performance.title">Performance Optimization</h3>
           <p data-i18n="blueprintOutline.features.performance.description">
-            Runs with low overhead and does not affect your Blueprint performance. Works smoothly even in large projects.
+            Async build system with caching for responsive UI on complex Blueprints (1000+ nodes). Fast on large graphs with per-Blueprint caching.
           </p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">🔧</div>
-          <h3 data-i18n="blueprintOutline.features.integration.title">Editor Integration</h3>
-          <p data-i18n="blueprintOutline.features.integration.description">
-            Fully integrated into Unreal Engine Editor. Directly usable in Blueprint Editor and easy installation.
+          <div class="feature-icon">🔄</div>
+          <h3 data-i18n="blueprintOutline.features.autoRefresh.title">Auto-Refresh & Editor Sync</h3>
+          <p data-i18n="blueprintOutline.features.autoRefresh.description">
+            Automatically refreshes when Blueprints are opened or recompiled. Selecting a node in the graph highlights it in the outline automatically.
           </p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">📦</div>
-          <h3 data-i18n="blueprintOutline.features.modular.title">Modular Structure</h3>
-          <p data-i18n="blueprintOutline.features.modular.description">
-            Easily extensible with modular architecture. Customizable and extensible according to your needs.
+          <div class="feature-icon">🎨</div>
+          <h3 data-i18n="blueprintOutline.features.colorCoded.title">Color-Coded Nodes</h3>
+          <p data-i18n="blueprintOutline.features.colorCoded.description">
+            Each node type has a unique color for easy identification. Switch case labels are color-coded in the outline.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🪟</div>
+          <h3 data-i18n="blueprintOutline.features.multiEditor.title">Multi-Editor Support</h3>
+          <p data-i18n="blueprintOutline.features.multiEditor.description">
+            Each Blueprint Editor window gets its own panel. Panel automatically appears in every Blueprint Editor (embedded).
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💾</div>
+          <h3 data-i18n="blueprintOutline.features.statePreservation.title">State Preservation</h3>
+          <p data-i18n="blueprintOutline.features.statePreservation.description">
+            Tree expansion state is preserved during auto-refresh. Bookmarks and comments are saved across sessions.
           </p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🌐</div>
-          <h3 data-i18n="blueprintOutline.features.crossPlatform.title">Cross-Platform Support</h3>
-          <p data-i18n="blueprintOutline.features.crossPlatform.description">
-            Works on Windows, Mac, and Linux. Supported on all Unreal Engine platforms.
+          <h3 data-i18n="blueprintOutline.features.localization.title">Full Localization</h3>
+          <p data-i18n="blueprintOutline.features.localization.description">
+            English and Turkish support. Full localization for all UI elements and messages.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3 data-i18n="blueprintOutline.features.editorOnly.title">Editor-Only Operation</h3>
+          <p data-i18n="blueprintOutline.features.editorOnly.description">
+            No runtime load. Works only in the editor, ensuring zero performance impact on packaged builds.
           </p>
         </div>
       </div>
