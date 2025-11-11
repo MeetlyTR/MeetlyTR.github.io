@@ -11,7 +11,7 @@ const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 // Bu hash GitHub'da görünebilir ama gerçek şifre görünmez
 // Şifreyi değiştirmek için: Yeni şifreyi SHA-256 ile hash'leyin ve aşağıdaki değeri güncelleyin
 // Örnek: node -e "const crypto = require('crypto'); console.log(crypto.createHash('sha256').update('YeniŞifre').digest('hex'));"
-const PASSWORD_HASH = '0f2f23bad805b7f3a7a2c7ff55b1c604706c97778926a9b786e73b080e04c5bb'; // SHA-256 hash of Meetly2024!
+const PASSWORD_HASH = '7fed8d9c81001d3c37253add997fe8318399348b6b53daee186b3a8d91643cd7'; // SHA-256 hash of !lf09Y22
 
 // Calculate SHA-256 hash
 async function sha256(message) {

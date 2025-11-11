@@ -4,9 +4,9 @@
 
 Edit mode şifresi **SHA-256 hash** ile korunmaktadır. Gerçek şifre hiçbir yerde saklanmaz, sadece hash değeri kodda bulunur.
 
-## Varsayılan Şifre
+## Şifre
 
-Varsayılan şifre: `Meetly2024!`
+Şifre güvenlik nedeniyle burada belirtilmemektedir. Şifreyi değiştirmek için `edit-mode.js` dosyasındaki `PASSWORD_HASH` değerini güncelleyin.
 
 ## Şifreyi Değiştirme
 
