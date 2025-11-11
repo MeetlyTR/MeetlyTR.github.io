@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Muzaffer Karafil – Hakkımda</title>
-  <meta name="description" content="Muzaffer Karafil — Togg Paint Maintenance ekibinde görev alıyor, Meetly projesinin geliştiricisi. Mobil geliştirme ve yapay zekâ ile ilgileniyor.">
+  <title>Muzaffer Karafil – Game Engine Plugin Developer</title>
+  <meta name="description" content="Muzaffer Karafil — Unreal Engine & Unity Plugin Developer, Togg Paint Maintenance, Meetly Geliştiricisi. Oyun motoru eklentileri ve mobil geliştirme uzmanı.">
   <link rel="canonical" href="https://meetlytr.github.io/"/>
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Muzaffer Karafil – Hakkımda">
-  <meta property="og:description" content="Togg Paint Maintenance · Meetly Geliştiricisi · Mobil & Yapay Zekâ">
+  <meta property="og:title" content="Muzaffer Karafil – Game Engine Plugin Developer">
+  <meta property="og:description" content="Unreal Engine & Unity Plugin Developer · Togg Paint Maintenance · Meetly Geliştiricisi">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://meetlytr.github.io/">
-  <meta property="og:image" content="https://meetlytr.github.io/assets/profile.jpg">
+  <meta property="og:image" content="https://meetlytr.github.io/profile.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Structured Data -->
@@ -22,66 +22,434 @@
     "@type":"Person",
     "name":"Muzaffer Karafil",
     "url":"https://meetlytr.github.io/",
-    "jobTitle":"Paint Maintenance (Togg) · Meetly Geliştiricisi",
+    "jobTitle":"Game Engine Plugin Developer · Paint Maintenance (Togg) · Meetly Geliştiricisi",
     "sameAs":["https://www.linkedin.com/in/mucahitmuzaffer","https://github.com/MeetlyTR"]
   }
   </script>
 
   <style>
-    :root{--fg:#111;--muted:#666;--bg:#fff;--link:#0a66c2;--border:#ececec;--max:880px}
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);
-      font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
-    a{color:var(--link);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:var(--max);margin:0 auto;padding:24px}
-    .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
-    .brand{font-weight:700;letter-spacing:.2px}
-    .menu a{margin-left:16px;color:var(--fg)}
-    .hero{padding:28px 0 8px}
-    .hero h1{margin:0 0 6px;font-size:34px;line-height:1.2}
-    .hero p{margin:4px 0;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:1fr;gap:28px}
-    .left img{max-width:240px;border-radius:10px;border:1px solid var(--border);width:100%;height:auto}
-    .badges{margin-top:14px}
-    .badge{display:inline-block;padding:4px 10px;border:1px solid var(--border);
-      border-radius:999px;font-size:12px;color:var(--muted);margin:0 8px 8px 0}
-    .section{padding:22px 0;border-top:1px solid var(--border)}
-    .section h3{margin:0 0 10px}
-    .list{padding-left:18px;margin:8px 0}
-    .kv{margin-top:12px;font-size:14px;color:var(--muted)}
-    .kv div{margin:2px 0}
-    .footer{border-top:1px solid var(--border);padding:14px 0;margin-top:24px;color:var(--muted);font-size:14px}
-    .social a{margin-right:14px}
-    @media(min-width:900px){.grid{grid-template-columns:260px 1fr}}
+    :root {
+      --fg: #1a1a1a;
+      --muted: #666;
+      --bg: #ffffff;
+      --link: #0a66c2;
+      --link-hover: #004182;
+      --border: #e0e0e0;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --max: 1200px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.7 system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+    
+    a {
+      color: var(--link);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+    
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    /* Navigation */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    
+    .brand {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.3px;
+    }
+    
+    .brand a {
+      color: var(--fg);
+    }
+    
+    .menu {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .menu a {
+      color: var(--fg);
+      font-weight: 500;
+      font-size: 15px;
+    }
+    
+    .menu a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 48px 0 32px;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      line-height: 1.2;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero .subtitle {
+      font-size: 20px;
+      color: var(--muted);
+      margin: 8px 0;
+      font-weight: 500;
+    }
+    
+    .hero .location {
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 15px;
+    }
+    
+    /* Main Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin: 40px 0;
+    }
+    
+    @media (min-width: 900px) {
+      .grid {
+        grid-template-columns: 280px 1fr;
+      }
+    }
+    
+    /* Sidebar */
+    .left {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+    
+    .left img {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 16px;
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .left img:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .badges {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--muted);
+      background: #f8f9fa;
+      transition: all 0.2s ease;
+    }
+    
+    .badge:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #f0f0ff;
+    }
+    
+    .kv {
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    
+    .kv div {
+      margin: 8px 0;
+    }
+    
+    /* Sections */
+    .section {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+    }
+    
+    .section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+    
+    .section h3 {
+      margin: 0 0 24px;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--fg);
+    }
+    
+    .section h4 {
+      margin: 24px 0 12px;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--fg);
+    }
+    
+    .section h4 small {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: 8px;
+    }
+    
+    .list {
+      padding-left: 24px;
+      margin: 12px 0;
+      line-height: 1.8;
+    }
+    
+    .list li {
+      margin: 8px 0;
+      color: var(--muted);
+    }
+    
+    /* Plugin Cards */
+    .plugin-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin: 24px 0;
+    }
+    
+    @media (min-width: 768px) {
+      .plugin-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .plugin-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      background: #fafafa;
+      transition: all 0.3s ease;
+    }
+    
+    .plugin-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+    
+    .plugin-card h4 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .plugin-card .icon {
+      font-size: 28px;
+    }
+    
+    .plugin-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+    
+    .plugin-features {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .plugin-features ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    
+    .plugin-features li {
+      margin: 6px 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    
+    .skill-category {
+      background: #f8f9fa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    
+    .skill-category h5 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--fg);
+    }
+    
+    .skill-category ul {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 14px;
+    }
+    
+    .skill-category li {
+      margin: 6px 0;
+      color: var(--muted);
+    }
+    
+    /* Social Links */
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 0;
+    }
+    
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: #f8f9fa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--fg);
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .social a:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      margin-top: 48px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+      
+      .hero .subtitle {
+        font-size: 18px;
+      }
+      
+      .menu {
+        gap: 16px;
+      }
+      
+      .menu a {
+        font-size: 14px;
+      }
+      
+      .left {
+        position: static;
+      }
+      
+      .section h3 {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- NAV -->
+    <!-- Navigation -->
     <nav class="nav">
       <div class="brand"><a href="/">Muzaffer Karafil</a></div>
       <div class="menu">
-        <a href="/">Home</a>
-        <a href="#deneyim">Work</a>
-        <a href="#iletisim">Contact</a>
+        <a href="#hakkımda">Hakkımda</a>
+        <a href="#pluginler">Pluginler</a>
+        <a href="#deneyim">Deneyim</a>
+        <a href="#iletisim">İletişim</a>
       </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- Hero Section -->
     <header class="hero">
       <h1>Muzaffer Karafil</h1>
-      <p>🚘 Togg <strong>Paint Maintenance</strong> · 📱 <strong>Meetly</strong> Geliştiricisi</p>
-      <p>🎂 1993 · İstanbul / Kadıköy</p>
+      <p class="subtitle">🎮 Game Engine Plugin Developer</p>
+      <p class="subtitle">🚘 Togg <strong>Paint Maintenance</strong> · 📱 <strong>Meetly</strong> Geliştiricisi</p>
+      <p class="location">🎂 1993 · İstanbul / Kadıköy</p>
     </header>
 
-    <!-- MAIN -->
+    <!-- Main Content -->
     <main class="grid">
-      <!-- SOL -->
+      <!-- Sidebar -->
       <aside class="left">
-        <!-- Profil fotoğrafını /assets/profile.jpg olarak yükle -->
-        <img src="/assets/profile.jpg" alt="Muzaffer Karafil">
+        <img src="profile.jpg" alt="Muzaffer Karafil">
         <div class="badges">
+          <span class="badge">Unreal Engine</span>
+          <span class="badge">Unity</span>
+          <span class="badge">C++</span>
+          <span class="badge">C#</span>
           <span class="badge">SwiftUI</span>
           <span class="badge">React Native</span>
           <span class="badge">AI</span>
@@ -90,47 +458,123 @@
         <div class="kv">
           <div>🎯 Kullanıcı odaklı, sade ve izlenebilir geliştirme</div>
           <div>🔧 Üretim disiplini + yazılım esnekliği</div>
+          <div>⚡ Performans odaklı plugin mimarisi</div>
         </div>
       </aside>
 
-      <!-- SAĞ -->
+      <!-- Main Content -->
       <section>
-        <p>
-          Merhaba! Ben <strong>Muzaffer Karafil</strong>. Üretim disiplininden gelen
-          düzen ve hassasiyeti teknoloji merakıyla birleştiriyorum. Togg’da
-          <strong>Paint Maintenance</strong> ekibinde görev alıyor; aynı zamanda
-          <strong>Meetly</strong> projesinin geliştiricisi olarak mobil ve yapay zekâ
-          odaklı ürünler üzerinde çalışıyorum.
-        </p>
+        <!-- Hakkımda -->
+        <div id="hakkımda">
+          <p style="font-size: 18px; line-height: 1.8; color: var(--muted);">
+            Merhaba! Ben <strong style="color: var(--fg);">Muzaffer Karafil</strong>. Üretim disiplininden gelen
+            düzen ve hassasiyeti teknoloji merakıyla birleştiriyorum. Togg'da
+            <strong style="color: var(--fg);">Paint Maintenance</strong> ekibinde görev alıyor; aynı zamanda
+            <strong style="color: var(--fg);">Meetly</strong> projesinin geliştiricisi olarak mobil ve yapay zekâ
+            odaklı ürünler üzerinde çalışıyorum.
+          </p>
+          <p style="font-size: 18px; line-height: 1.8; color: var(--muted); margin-top: 16px;">
+            <strong style="color: var(--fg);">Unreal Engine</strong> ve <strong style="color: var(--fg);">Unity</strong> 
+            için profesyonel plugin geliştirme konusunda uzmanlaşıyorum. Oyun motorlarına özel çözümler üretmek, 
+            geliştiricilerin iş akışlarını optimize etmek ve performanslı araçlar geliştirmek benim tutkum.
+          </p>
+        </div>
 
-        <!-- DENEYİM -->
+        <!-- Plugin Geliştirme -->
+        <div id="pluginler" class="section">
+          <h3>🎮 Plugin Geliştirme</h3>
+          
+          <div class="plugin-grid">
+            <!-- Unreal Engine -->
+            <div class="plugin-card">
+              <h4>
+                <span class="icon">🎯</span>
+                Unreal Engine
+              </h4>
+              <p>
+                Unreal Engine için C++ ve Blueprint tabanlı plugin geliştirme. 
+                Editor tool'ları, runtime sistemleri ve performans optimizasyonları.
+              </p>
+              <div class="plugin-features">
+                <ul>
+                  <li>C++ Module Development</li>
+                  <li>Blueprint Function Library</li>
+                  <li>Editor Utility Widgets</li>
+                  <li>Asset Management Tools</li>
+                  <li>Performance Optimization</li>
+                  <li>Multi-threading Support</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Unity -->
+            <div class="plugin-card">
+              <h4>
+                <span class="icon">⚡</span>
+                Unity
+              </h4>
+              <p>
+                Unity için C# tabanlı Editor extension'lar ve runtime plugin'ler. 
+                Custom Inspector'lar, Editor Window'lar ve workflow iyileştirmeleri.
+              </p>
+              <div class="plugin-features">
+                <ul>
+                  <li>C# Editor Extensions</li>
+                  <li>Custom Property Drawers</li>
+                  <li>Editor Window Tools</li>
+                  <li>Asset Pipeline Integration</li>
+                  <li>ScriptableObject Systems</li>
+                  <li>Build Pipeline Automation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 32px; padding: 24px; background: #f0f0ff; border-radius: 12px; border: 1px solid var(--accent-light);">
+            <h4 style="margin-top: 0; color: var(--accent);">💡 Plugin Geliştirme Yaklaşımım</h4>
+            <ul class="list" style="margin-top: 12px;">
+              <li><strong>Modüler Mimari:</strong> Her plugin, bağımsız çalışabilen ve kolayca entegre edilebilen modüllerden oluşur.</li>
+              <li><strong>Performans Odaklı:</strong> Runtime overhead'i minimize eden, memory-efficient çözümler.</li>
+              <li><strong>Geliştirici Dostu:</strong> Kapsamlı dokümantasyon, örnek projeler ve kullanım senaryoları.</li>
+              <li><strong>Cross-Platform:</strong> Windows, Mac, Linux desteği ve platform-specific optimizasyonlar.</li>
+              <li><strong>Version Control Friendly:</strong> Git-friendly yapı, merge conflict'leri minimize eden tasarım.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Deneyim -->
         <div id="deneyim" class="section">
-          <h3>Deneyim</h3>
+          <h3>💼 Deneyim</h3>
 
           <h4>🚘 Togg — Paint Maintenance <small>(Nisan 2022 – Güncel)</small></h4>
           <ul class="list">
             <li>Boyahane bakım & kalite süreçlerinde süreklilik ve verimlilik.</li>
             <li>DXQ3DOnside, Power Automate ve ilgili otomasyon yetkinlikleri.</li>
+            <li>Endüstriyel süreçlerde optimizasyon ve problem çözme.</li>
           </ul>
 
           <h4>🏍 Honda Türkiye A.Ş. — Facility Maintenance Operator <small>(Mayıs 2020 – Ekim 2021)</small></h4>
           <ul class="list">
             <li>Ec-Pt Oven, Top Coat Oven, Wax Oven, Sealer Oven, Minimax System süreçlerinde bakım & işletme.</li>
+            <li>Sistem optimizasyonu ve süreklilik yönetimi.</li>
           </ul>
 
           <h4>🏍 Honda Türkiye A.Ş. — Üretim Operatörü <small>(Eylül 2017 – Mayıs 2020)</small></h4>
           <ul class="list">
             <li>Üretim hattı operasyonları, kalite kontrol ve süreklilik.</li>
+            <li>Proses iyileştirme ve verimlilik artırma projeleri.</li>
           </ul>
 
           <h4>📡 Trio Mobil — Technical Support Manager <small>(Ağustos 2016 – Mayıs 2018)</small></h4>
           <ul class="list">
             <li>Teknik destek ekibi yönetimi, müşteri ilişkileri ve saha çözümleri.</li>
+            <li>Ekip koordinasyonu ve teknik problem çözme.</li>
           </ul>
 
           <h4>🔧 Trio Mobil — Electronic Technician <small>(Mayıs 2017 – Eylül 2017)</small></h4>
           <ul class="list">
             <li>Elektronik bakım, donanım desteği ve sistem entegrasyonu.</li>
+            <li>Hardware troubleshooting ve repair.</li>
           </ul>
 
           <h4>📱 Meetly — Geliştirici & Ürün Sahibi</h4>
@@ -138,41 +582,100 @@
             <li>Merkezi randevu & hizmet yönetimi: kategori → alt kategori → hizmet akışı.</li>
             <li>Çok dilli arayüz, işletme–şube–çalışan hiyerarşisi, modern SwiftUI bileşenleri.</li>
             <li>Basit, anlaşılır ve ölçeklenebilir ürün vizyonu.</li>
+            <li>AI-powered özellikler ve kullanıcı deneyimi optimizasyonu.</li>
           </ul>
         </div>
 
-        <!-- YETKİNLİKLER -->
+        <!-- Yetkinlikler -->
         <div class="section">
-          <h3>Yetkinlikler</h3>
-          <ul class="list">
-            <li>DXQ3DOnside</li>
-            <li>Power Automate</li>
-            <li>Endüstriyel bakım ve üretim süreçleri</li>
-            <li>Mobil uygulama geliştirme (SwiftUI, React Native)</li>
-            <li>Yapay zekâ ve otomasyon fikirleri</li>
-            <li>Tasarım sistemleri ve kullanıcı deneyimi</li>
-            <!-- LinkedIn’deki diğer (+17) yeteneklerini buraya ekleyebilirsin -->
-          </ul>
+          <h3>🛠 Yetkinlikler</h3>
+          
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h5>Game Engines</h5>
+              <ul>
+                <li>Unreal Engine (C++)</li>
+                <li>Unity (C#)</li>
+                <li>Blueprint Scripting</li>
+                <li>Editor Tools</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h5>Mobil Geliştirme</h5>
+              <ul>
+                <li>SwiftUI</li>
+                <li>React Native</li>
+                <li>iOS Development</li>
+                <li>Cross-platform</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h5>Endüstriyel</h5>
+              <ul>
+                <li>DXQ3DOnside</li>
+                <li>Power Automate</li>
+                <li>Process Automation</li>
+                <li>Quality Control</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h5>Genel</h5>
+              <ul>
+                <li>AI & Machine Learning</li>
+                <li>Design Systems</li>
+                <li>System Architecture</li>
+                <li>Performance Optimization</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <!-- İLETİŞİM -->
+        <!-- İletişim -->
         <div id="iletisim" class="section">
-          <h3>İletişim</h3>
-          <p class="social">
-            <a href="https://www.linkedin.com/in/mucahitmuzaffer" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://github.com/MeetlyTR" target="_blank" rel="noopener">GitHub</a>
-            <a href="mailto:mucahit.muzaffer@gmail.com">mucahit.muzaffer@gmail.com</a>
+          <h3>📬 İletişim</h3>
+          <p style="color: var(--muted); margin-bottom: 20px;">
+            Plugin geliştirme, işbirliği veya sorularınız için benimle iletişime geçebilirsiniz.
           </p>
+          <div class="social">
+            <a href="https://www.linkedin.com/in/mucahitmuzaffer" target="_blank" rel="noopener">
+              <span>💼</span> LinkedIn
+            </a>
+            <a href="https://github.com/MeetlyTR" target="_blank" rel="noopener">
+              <span>🔗</span> GitHub
+            </a>
+            <a href="mailto:mucahit.muzaffer@gmail.com">
+              <span>✉️</span> Email
+            </a>
+          </div>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="footer">
-      © <span id="y"></span> Muzaffer Karafil
+      © <span id="y"></span> Muzaffer Karafil · Game Engine Plugin Developer
     </footer>
   </div>
 
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
