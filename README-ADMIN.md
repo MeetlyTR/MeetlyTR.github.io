@@ -6,6 +6,8 @@ Admin paneline şu adresten erişebilirsiniz:
 - **URL**: `https://meetlytr.github.io/admin.html`
 - **Yerel**: `http://localhost/admin.html` (local server çalıştırıyorsanız)
 
+⚠️ **Not**: Admin paneli şifresiz ve herkese açıktır. Doğrudan kullanabilirsiniz.
+
 ## Özellikler
 
 ### 1. Hero Section (Ana Sayfa Başlık Bölümü)
@@ -42,7 +44,7 @@ Admin paneline şu adresten erişebilirsiniz:
 ## Kullanım Adımları
 
 ### 1. İçerik Düzenleme
-1. Admin paneline giriş yapın
+1. Admin paneline gidin (şifre gerektirmez)
 2. Düzenlemek istediğiniz sekmesine tıklayın (Hero, About, vb.)
 3. Metinleri düzenleyin
 4. Resim yüklemek için "Resim Yükle" butonuna tıklayın
